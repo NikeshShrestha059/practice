@@ -1,0 +1,97 @@
+*{
+    
+    margin:0;
+    padding:0;
+}
+header{
+    color:white;
+    text-align:center;
+    padding:0%;
+    margin: 0%;
+    background-color:orange;
+}
+#navigation{
+    position:sticky;
+    top:0;
+}
+#logo{
+    float:right;
+}
+/*width="1257vh" height="538vh" */
+#img1{
+    background:url(../assets/images/R.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    max-width: 100vw;
+    width: 100vw;
+    height: calc(100vh - 74px);
+}
+#img2{
+    padding-left:10px;
+    margin: 2px;
+    width:41%;
+    height:50%;
+    float:right;
+}
+
+#img4{
+    padding-right:10px;
+    margin: 3px;
+    width:20%;
+    height:100%;
+    float:left;
+}
+footer{
+    background-color:gray;
+    text-align: center;
+}
+#table1{
+    text-align: justify;
+    color:white;
+    background-color:orange; 
+    padding:20px;
+}
+#table2{
+    text-align: justify;
+    color:white;
+    background-color:orange; 
+    padding:20px;
+}
+form{
+    margin: 10px;
+    padding:5px;
+   border:2px solid orange; 
+
+}
+ul{
+    list-style-type:none;
+    margin:0;
+    padding:0;
+   overflow: hidden;
+    background-color:black;
+ }
+ li a{
+    display:block;
+    color:white;
+    
+    text-decoration: none;
+ }
+ li:hover{
+    background-color:orange;
+    color:white;
+ }
+ li{
+    color:white;
+    float:left;
+    padding:8px 16px;
+ }
+ button{
+    padding:1px;
+    color:black;
+    background-color:white;
+ }
+ #input{
+    float:right;
+   
+ }
+
