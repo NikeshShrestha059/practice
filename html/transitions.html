@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        div{
+            margin:5px;
+            background-image:url(.);
+            color:blueviolet;
+            width: 100px;
+            height:100px;
+            background-color:blueviolet;
+            
+        }
+        /*.item:hover{
+            transform:translate(150px, 0px);
+            transition: transform 1s linear;
+        }
+        .item1:hover{
+            transform:translate(150px, 0px);
+            transition: transform 1s ease;
+        }
+        .item2:hover{
+            transform:translate(150px, 0px);
+            transition: transform 1s ease-in;
+        }
+        .item3:hover{
+            transform:translate(150px, 0px);
+            transition: transform 1s ease-out;
+        }
+        .item4:hover{
+            transform:translate(150px, 0px);
+            transition: transform 1s ease-out;
+        }*/
+        /*using transition delay 
+        .item:hover{
+            width:250px;
+            transition: width 3s;
+            transition-delay: 1s;
+        }*/
+        /*using both transition and transform
+        .item1:hover{
+            width:50vw;
+            height: 50vh;
+            transform:rotate(360deg);
+            transition: transform 2s ease-in-out;
+        }*/
+        .item:hover{
+            width: 300px;
+        transition-property: width;
+        transition-duration: 2s;
+        transition-timing-function: linear;
+        transition-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="item"></div>
+    <div class="item1"></div>
+    <div class="item2"></div>
+    <div class="item3"></div>
+    <div class="item4"></div>
+   
+</body>
+</html>

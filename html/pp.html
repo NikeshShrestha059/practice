@@ -5,15 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        p{
-            border-top-style:dotted;
-            border-bottom-style:double;
-            border-right-style:dashed;
+        .grid{
+            display:grid;
+            grid: 150px/ auto auto auto;
+            grid-gap:10px;
+            background-color: blue;
+            padding: 10px;
+        }
+        .grid > div{
+            background-color: aqua;
+            text-align:center;
+            padding:20px 0;
+            font-size: 40px;
         }
     </style>
 </head>
 <body>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit nam reiciendis expedita ea asperiores sit culpa.
-    Iusto error ipsa reiciendis, sequi esse quasi voluptatum eum mollitia aperiam sint voluptas cumque.</p>
+<div class="grid">
+    <div class="item1">1</div>
+    <div class="item2">2</div>
+    <div class="item3">3</div>
+    <div class="item4">4</div>
+    <div class="item5">5</div>
+    <div class="item6">6</div>
+</div>
 </body>
 </html>
