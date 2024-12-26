@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .item{ 
+
+            background-color: blue;
+            border:2px solid black; 
+            margin: 5px;        
+            width: 100px;
+            height: 100px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            transition: transform 1s ease-in-out;
+           padding:5px
+        }
+        .main{
+            width:100vw;
+            height:50vh;
+            background-color: bisque;         
+            display:flex;
+        }
+        #rotatex:hover{
+
+            transform:rotateX(45deg);
+        }
+        #rotatey:hover{
+            transform:rotatey(45deg);
+        }
+        #rotatez:hover{
+            transform:rotate(45deg);
+        }
+        #translatex:hover{
+            transform:translateX(45px);
+        }
+        #translatey:hover{
+            transform:TranslateY(45px);
+        }
+        #translatez:hover{
+            transform:perspective(200px) translateZ(45px);
+        }
+        #scalex:hover{
+            transform:scaleX(2);
+        }
+        #scaley:hover{
+            transform:scaleY(2);
+        }
+        #scalez:hover{
+            transform:perspective(200px) scaleZ(3)  rotatey(30deg);
+        }
+        #-rotatex:hover{
+            transform:rotatex(-45deg);
+        }
+        #-rotatey:hover{
+            transform:rotatey(-45deg);
+        }
+        #-rotatez:hover{
+            transform:rotatez(-45deg);
+        }
+        #-translatex:hover{
+            transform:translatex(-45px);
+        }
+        #-translatey:hover{
+            transform:translatey(-45px);
+        }
+        #-translatez:hover{
+            transform:perspective(300px) translatez(-45px);
+        }
+        #-scalex:hover{
+            transform:scalex(-2);
+        }
+        #-scaley:hover{
+            transform:scaley(-2);
+        }
+        #-scalez:hover{
+            transform:perspective(200px) scalez(-2) rotatey(30deg);
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div class="main">
+            <div class="item" id="rotatex">RotateX</div>
+            <div class="item" id="rotatey">RotateY</div>
+            <div class="item"id="rotatez">RotateZ</div>
+            <div class="item"id="translatex">TranslateX</div>
+            <div class="item"id="translatey">TranslateY</div>
+            <div class="item"id="translatez">TranslateZ</div>
+            <div class="item"id="scalex">ScaleX</div>
+            <div class="item"id="scaley">ScaleY</div>
+            <div class="item"id="scalez">ScaleZ</div>
+    </div>
+    <br>
+    <div class="main">
+        <div class="item" id="-rotatex">RotateX</div>
+        <div class="item" id="-rotatey">RotateY</div>
+        <div class="item"id="-rotatez">RotateZ</div>
+        <div class="item"id="-translatex">TranslateX</div>
+        <div class="item"id="-translatey">TranslateY</div>
+        <div class="item"id="-translatez">TranslateZ</div>
+        <div class="item"id="-scalex">ScaleX</div>
+        <div class="item"id="-scaley">ScaleY</div>
+        <div class="item"id="-scalez">ScaleZ</div>
+</div>
+</body>
+</html>
