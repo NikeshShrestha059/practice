@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,
+     initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border:3px solid green;
+           
+            margin:50px;
+            width: 100px;
+            height: 100px;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            transition: transform 1s ease-in-out;
+            
+        }
+        div.translate:hover{
+            color:white;
+            background-image:url(./OIP\ \(2\).jpg);
+            background-position:center;
+            background-repeat:no repeat;
+            background-size: cover;
+            transform:translate(90px,50px);
+        }
+        div.rotate:hover{
+            color:white;
+            background-image:url(./OIP\ \(2\).jpg);
+            background-position:center;
+            background-repeat:no repeat;
+            background-size: cover;
+            transform:rotate(180deg);
+        }
+        div.scale:hover{
+            color:white;
+            background-image:url(./OIP\ \(2\).jpg);
+            background-position:center;
+            background-repeat:no repeat;
+            background-size: cover;
+            transform:Scale(2,2);
+        }div.skew:hover{
+            color:white;
+            background-image:url(./OIP\ \(2\).jpg);
+            background-position:center;
+            background-repeat:no repeat;
+            background-size: cover;
+            transform:skew(10deg,30deg);
+        }
+        div.All:hover{
+            color:white;
+            background-image:url(./OIP\ \(2\).jpg);
+            background-position:center;
+            background-repeat:no repeat;
+            background-size: cover;
+            transform:rotate(10deg);
+            transform:matrix(1.5,0,0,1.5,90,20);
+            box-shadow:10px 5px 5px gray;
+        }
+
+    </style>
+</head>
+<body>
+    <H1>2D transform</H1>
+    <div class="translate">
+        <P>2D transform</P>
+    </div> 
+    <div class="rotate">
+        <P>2D transform</P>
+    </div> 
+    <div class="scale">
+        <P>2D transform</P>
+    </div> 
+    <div class="skew">
+        <P>2D transform</P>
+    </div>  
+    <div class="All">
+        <P>ALL</P>
+    </div>  
+     
+</body>
+</html>
