@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       img[src]{
+        border:3px solid red;
+       }
+       img[id]{
+        color: white;
+       }
+       input[type="date"]{
+        border: 2px solid red;
+       }
+       input[type="email"]{
+        border:2px solid green;
+       }
+       /*img[alt="mountain of nepal"]{
+        background-color:aqua;
+        color:burlywood;
+       }
+       img[alt^="mountain"]{
+        background-color:white;
+       }
+       img[alt$="nepal"]{
+        border:2px solid green;
+       }*/
+       img[alt*="of"]{
+        background-color:aqua;
+       }
+    </style>
+</head>
+<body>
+    <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis, officiis dolorum soluta, minima at aliquid omnis magni libero molestias, tenetur minus veniam expedita. Minima fuga laboriosam harum nemo non quia.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit iste saepe officiis ullam maiores non. Sapiente rerum qui ullam? Nemo accusamus at eligendi quidem fugiat aspernatur ut eos inventore asperiores!
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quidem deserunt, iure magnam velit rem nihil dolorem accusantium temporibus autem harum praesentium nulla commodi libero ducimus sunt qui quas. A, aperiam.
+        <img src="./assets/images/R (1).jpg" alt="Hiking" id="img4">
+    
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="mountain of nepal" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="mountain of india" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="Map of nepal" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="Map of india" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="history of nepal" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="history of india" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="landscape of nepal" >
+        <img src="./assets/images/Tushita-Himalaya-4K-Desktop-Wallpaper-1024x576.jpg" alt="landscape of india" >
+    </p>
+    <div id="form">
+        <form action="/action_page.php">
+            <fieldset>
+                <legend>Student form:</legend>
+            <div>
+                <label for="fname">Student name:</label><br>
+                <input type="text" id="fname" name="fname" placeholder="*" required="true"><br>
+            </div>
+    
+            <div>
+            <label for="lname">Address:</label><br>
+            <input type="text" id="lname" name="lname" placeholder="*" required="true"><br>
+            </div>
+    
+            <div>
+            <label for="number">Phone Number</label><br>
+            <input type="number" id="number" name="number" placeholder="*" required="true"><br>
+            </div>
+
+            <div>
+                Gender<br>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label><br>
+            </div>
+
+            <div>
+                <label for="age">Age</label><br>
+                <input type="number" id="age" name="age"><br>
+            </div>
+
+            <div>
+                <label for="grade">Previous Grade</label><br>
+                <input type="number" id="grade" name="grade"><br>
+            </div>
+
+            <div>
+                <label for="DOB">DOB</label><br>
+                <input type="date" name="DOB" id="DOB" placeholder="*" required="true"><br>
+            </div>
+            <div>
+                <label for="email">Student Email</label><br>
+                <input type="email" name="email" id="email" placeholder="*" required="true"><br>
+            </div>
+            <div>
+
+            </div>
+            <input type="submit" value="Submit">
+        </fieldset>
+        </form>
+    </div>
+
+</body>
+</html>
