@@ -1,0 +1,20 @@
+@import 'pra';
+table{
+    width:300px;
+    height:90px;
+    th{
+        
+        button{
+            float:right;
+            border:1px solid blue;
+            background-color:blue;
+            border-radius:5px;
+        }
+        .work{
+            display:flex;
+        }
+    }
+    td{
+        display:flex;
+    }
+}
