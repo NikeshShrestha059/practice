@@ -1,20 +1,38 @@
 @import 'pra';
-table{
-    width:300px;
-    height:90px;
-    th{
+@import 'color';
+*{
+    
+    color:black;
+    font-size:$base-font-size;
+}
+.login{
+    width: $base-width;
+    height:$base-height;
+    background-color:white;
+    color:$text-color;
+    border:$base-border;
+    border-radius:20px;
+    text-align:center;
+    padding-top:$base-padding;
+    
+    h1{
+        background-color:$main-color;
+        width:$base-width;
+        border:$base-border;  
+        background-color:$main-color;
+    }
+    input{
+        margin-top:20px;
         
-        button{
-            float:right;
-            border:1px solid blue;
-            background-color:blue;
-            border-radius:5px;
-        }
-        .work{
-            display:flex;
-        }
+        
     }
-    td{
-        display:flex;
+    footer{
+        padding-top:50px;
     }
+}
+
+body{
+    display:flex;
+    justify-content:center;
+    align-content:end;
 }

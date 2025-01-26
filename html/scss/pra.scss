@@ -1,12 +1,43 @@
-$third-color:green;
+// $third-color:green;
 
-$padding-sm: 4px;
-$padding-md: 8px;
-$padding-lg: 12px;
-$padding-xl: 16px;
-$padding-rt:4px 12px;
-$width-img:90px;
-$widht-svg:15px;
+// $padding-sm: 4px;
+// $padding-md: 8px;
+// $padding-lg: 12px;
+// $padding-xl: 16px;
+// $padding-rt:4px 12px;
 
+// $width-img:90px;
+// $widht-svg:1px;
 
+//color
+$main-color:blue;
+$secondary-color:green;
+$info:orange;
+$error:red;
+$text-color:white;
 
+$base-border:1px solid black;
+$base-padding:5px;
+$base-margin:5px;
+
+$base-width: 300px;
+$base-height:300px;
+$base-font-size:14px;
+
+// maping color palette
+$color:(
+    "primary":$main-color,
+    "secondary":secondary-color,
+    "error":error,
+    "info":info,
+    "blue":#1919e6,
+    "red":#e61919,
+    "green":#19e635,
+    "yellow":#e6e619,
+    "purple":#9900ff,
+);
+
+// @debug map-get($color,"purple");
+// @debug map-has-key($color,"secondary");
+// @debug map-remove($color, "primary");
+// @debug map-merge($color,("pink":#ffc0cb));

@@ -6,66 +6,58 @@
     width: 800px;
     height:300px;
     margin-top:10px;
-    
+    display:block;
     .bg{
                 background-image:url(../img/OIP\ \(1\).jpg);
                 width:auto;
                 height: 120px;
                 background-repeat:no-repeat;
                 background-size:cover;
+                display:flex;
+                align-items:center;
                 span{
+                    padding:14px;
                     width: 600px;
                     font-size:29px;
-                    color:white;
-                    display:flex;
-                    text-align:center;
-                    align-items:center;
-
+                    color:white;    
                     
                 }
+                .button{
+                    width:100px;
                 }
-            
-            
+                button{
+                    width:100px;
+                    padding:$padding-sm;
+                    background-color:blue;
+                    border-radius:5px;
+                    border:1px solid blue;
+                    margin-bottom:12px;
+                }
                 
-                    
-                    
-}
                 
+            }  
             
-
-// .\{
-//     background-color:aqua;
-//     width: 600px;
-//     height: 300px;
-//     border:2px solid black;
-//     
-    
-    
-//     span{
-//         display:flex;
-//         text-align:center;
-//         justify-content:center;
-//     }
-//     .svg{
-//         width:$widht-svg;
-//         display:inline-block;
-//     }
-//     .foot{
-//         height:75px;
-//         background-color:white;
-//         padding-top:$padding-sm;
-        
-//         .top{
-//             display:flex;
-//             list-style:none;
-//             justify-content:space-around;
-//         }
-//         .down{
-//             display:flex;
-//             list-style:none;
-//             justify-content:space-around;
-//         }
-    
-//     }
-    
-// }
+                         
+            .foot{
+                width:300px;
+                background-color:white;
+                margin:5px;
+               
+                        
+                        .top{
+                            display:flex;
+                            list-style:none;
+                            justify-content:space-around;
+                            .svg{
+                                width:15px;
+                            }
+                        }
+                        .down{
+                            display:flex;
+                            list-style:none;
+                            justify-content:space-around;
+                        }
+                    
+                    }
+                    
+        }
