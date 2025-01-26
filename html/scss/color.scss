@@ -1,26 +1,48 @@
 @import 'pra';
 
-@each $key, $val in $color {
-    .text-#{$key}{
-        color:$val
-    }
-    .bg-#{$key}{
-        background-color: $val;
-    }
-    //for loop for light color
-    @for $i from 1 through 9 {
-        .text-#{$key}-light-#{$i}{
-            color: mix(white, $val, $i * 10%);
-        }
-        .bg-#{$key}-light-#{$i}{
-            background-color: mix(white, $val, $i * 10%);
-        }
-        .text-#{$key}-dark-#{$i}{
-            color: mix(black, $val, $i *10%);
-        }
-        .bg-#{$key}-dark-#{$i}{
-            background-color: mix(black, $val, $i * 10%);
-        }
+// @each $key, $val in $color {
+//     .text-#{$key}{
+//         color:$val
+//     }
+//     .bg-#{$key}{
+//         background-color: $val;
+//     }
+//     //for loop for light color
+//     @for $i from 1 through 9 {
+//         .text-#{$key}-light-#{$i}{
+//             color: mix(white, $val, $i * 10%);
+//         }
+//         .bg-#{$key}-light-#{$i}{
+//             background-color: mix(white, $val, $i * 10%);
+//         }
+//         .text-#{$key}-dark-#{$i}{
+//             color: mix(black, $val, $i *10%);
+//         }
+//         .bg-#{$key}-dark-#{$i}{
+//             background-color: mix(black, $val, $i * 10%);
+//         }
 
-      }
+//       }
+      
+// }
+// body{
+//     border:$base-border;
+// }     
+// @for $i from 1 through 12 {
+//     .col-#{$i} {
+//       width: percentage($i/12);
+//     }
+//   }
+.container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: dodgerblue;
+    padding: 10px;
+  }
+.container > div {
+    background-color: #f1f1f1;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 30px;
+    text-align: center;
 }

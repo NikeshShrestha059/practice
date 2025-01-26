@@ -39,6 +39,8 @@ $color:(
     "black":black,
 );
 
+$margins : (12, 13, 14, 15,16)
+
 // @debug map-get($color,"purple");
 // @debug map-has-key($color,"secondary");
 // @debug map-remove($color, "primary");
