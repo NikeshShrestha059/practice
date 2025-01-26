@@ -7,4 +7,20 @@
     .bg-#{$key}{
         background-color: $val;
     }
+    //for loop for light color
+    @for $i from 1 through 9 {
+        .text-#{$key}-light-#{$i}{
+            color: mix(white, $val, $i * 10%);
+        }
+        .bg-#{$key}-light-#{$i}{
+            background-color: mix(white, $val, $i * 10%);
+        }
+        .text-#{$key}-dark-#{$i}{
+            color: mix(black, $val, $i *10%);
+        }
+        .bg-#{$key}-dark-#{$i}{
+            background-color: mix(black, $val, $i * 10%);
+        }
+
+      }
 }

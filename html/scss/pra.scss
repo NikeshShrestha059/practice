@@ -11,9 +11,7 @@
 
 //color
 $main-color:blue;
-$secondary-color:green;
-$info:orange;
-$error:red;
+
 $text-color:white;
 
 $base-border:1px solid black;
@@ -27,14 +25,18 @@ $base-font-size:14px;
 // maping color palette
 $color:(
     "primary":$main-color,
-    "secondary":secondary-color,
-    "error":error,
-    "info":info,
+    "secondary":pink,
+    "error":rgb(62, 5, 5),
+    "info":#e61975,
     "blue":#1919e6,
     "red":#e61919,
     "green":#19e635,
     "yellow":#e6e619,
     "purple":#9900ff,
+    "orange":orange,
+    "gray":gray,
+    "white":white,
+    "black":black,
 );
 
 // @debug map-get($color,"purple");
