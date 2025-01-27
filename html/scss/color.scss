@@ -1,5 +1,7 @@
 @import 'pra';
 
+// interpolate (interpolation)
+
 // @each $key, $val in $color {
 //     .text-#{$key}{
 //         color:$val
@@ -27,22 +29,27 @@
 // }
 // body{
 //     border:$base-border;
-// }     
-// @for $i from 1 through 12 {
-//     .col-#{$i} {
-//       width: percentage($i/12);
-//     }
-//   }
-.container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    background-color: dodgerblue;
-    padding: 10px;
+// }    
+* {
+    box-sizing: border-box;
   }
-.container > div {
-    background-color: #f1f1f1;
-    border: 1px solid black;
-    padding: 10px;
-    font-size: 30px;
-    text-align: center;
-}
+  
+  
+  
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  [class*="col-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+  }
+  
+@for $i from 1 through 12 {
+    .col-#{$i} {
+      width: percentage($i/12);
+    }
+  }

@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  gap: 10px 15px;
+  display: grid;
+  grid-template-rows: repeat(12, 100px);
+  grid-template-columns: repeat(12, 100px);
+  /* if we add item more then we set then it automatically set a row but doesn't have the value that we have include and sets its own value.
+  Thats why we use "grid-auto-rows" which allows us to add the value of the row if we add extra items. We can even send the extra item to the 
+  column by using "grid-auto-flow:column"*/
+  grid-auto-rows: 100px;
+  grid-auto-flow: column;
+}
+
+.container1 {
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /*minmax allous u to set the minimum value of the cell and the maximum value 
+of the cell which will help to change the size of the cell automatically according to the width of the device."autofit" it allowa the 
+cells to go to the next row when it reach the minimum size*/
+}
+
+.row {
+  border: 3px solid black;
+  background-color: pink;
+}/*# sourceMappingURL=grid.css.map */
