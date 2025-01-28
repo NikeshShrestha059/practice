@@ -1,25 +1,87 @@
-.container {
-  display: grid;
-  gap: 10px 15px;
-  display: grid;
-  grid-template-rows: repeat(12, 100px);
-  grid-template-columns: repeat(12, 100px);
-  /* if we add item more then we set then it automatically set a row but doesn't have the value that we have include and sets its own value.
-  Thats why we use "grid-auto-rows" which allows us to add the value of the row if we add extra items. We can even send the extra item to the 
-  column by using "grid-auto-flow:column"*/
-  grid-auto-rows: 100px;
-  grid-auto-flow: column;
+* {
+  padding: 0;
+  margin: 0;
 }
 
-.container1 {
+.container {
+  max-width: 1440px;
   display: grid;
-  grid-template-rows: repeat(4, 100px);
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /*minmax allous u to set the minimum value of the cell and the maximum value 
-of the cell which will help to change the size of the cell automatically according to the width of the device."autofit" it allowa the 
-cells to go to the next row when it reach the minimum size*/
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
+  padding: 0 10px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /*if we add item more then we set then it automatically set a row but doesn't have the value that we have include and sets its own value.
+  Thats why we use "grid-auto-rows" which allows us to add the value of the row if we add extra items. We can even send the extra item to the 
+  column by using "grid-auto-flow:column"*/
+}
+.container .row-1 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-2 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-3 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-4 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-5 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-6 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-7 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-8 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-9 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-10 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-11 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+.container .row-12 {
+  grid-template-rows: 100px;
+  border: 1px solid black;
+}
+
+.col {
+  gap: 10px;
+  padding: 20px;
+  margin: -10px;
+  grid-template-rows: repeat(3, 1fr);
 }
 
 .row {
-  border: 3px solid black;
-  background-color: pink;
-}/*# sourceMappingURL=grid.css.map */
+  background-color: blue;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
+  text-align: center;
+}
+
+.col:nth-child(1).row-1 {
+  grid-column: span 2;
+}
+
+/*minmax allous u to set the minimum value of the cell and the maximum value 
+    of the cell which will help to change the size of the cell automatically according to the width of the device."autofit" it allowa the 
+    cells to go to the next row when it reach the minimum size*//*# sourceMappingURL=grid.css.map */
