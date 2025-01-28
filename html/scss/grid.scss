@@ -68,6 +68,7 @@ $basic-margin:10px;
     column by using "grid-auto-flow:column"*/
 }
 .col{
+  display:grid;
     gap: 10px;
     padding: 20px;
     margin: -10px;
@@ -82,10 +83,10 @@ $basic-margin:10px;
     margin:$basic-margin;
     text-align:center;
 }
-.col:nth-child(1).row-1{
-    grid-column: span 2;
+.row-1{
+    grid-column:1/4;
 }
- 
+
 //  .container{
 //     display:grid;
 //     max-width: 1280px;
@@ -95,11 +96,3 @@ $basic-margin:10px;
 /*minmax allous u to set the minimum value of the cell and the maximum value 
     of the cell which will help to change the size of the cell automatically according to the width of the device."autofit" it allowa the 
     cells to go to the next row when it reach the minimum size*/
- //}
-
-
-
-// .row{
-//     border:3px solid black;
-//     background-color: pink;
-// }

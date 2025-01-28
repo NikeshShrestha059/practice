@@ -1,0 +1,90 @@
+.container {
+  display: flex;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.container .col-1 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-2 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-3 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-4 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-5 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-6 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-7 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-8 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-9 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-10 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-11 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+.container .col-12 {
+  width: 100px;
+  height: 100px;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.col {
+  gap: 10px;
+}
+
+.row {
+  gap: 10px;
+  border: 1px solid black;
+}/*# sourceMappingURL=flex.css.map */

@@ -1,0 +1,32 @@
+$border:1px solid black;
+$color:blue;
+$secondary:red;
+$gap:10px;
+$basic-padding:10px;
+$basic-margin:10px;
+
+.container{
+    display:flex; 
+    max-width: 1440px;
+    margin:0 auto;
+    padding:0 10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    @for $i from 1 through 12 {
+        .col-#{$i} {
+            width:100px;
+          height: 100px;
+          padding:5px;
+          border:$border; 
+        }
+      }
+}
+.col{
+
+   gap:10px;
+}
+.row{
+    gap:10px;
+    border:$border;
+}
