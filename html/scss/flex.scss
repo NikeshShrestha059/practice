@@ -4,29 +4,60 @@ $secondary:red;
 $gap:10px;
 $basic-padding:10px;
 $basic-margin:10px;
+*{
+    padding:0;
+    margin:0;
+}
+ul{
+    width:100%;
+    background-color:rgb(172, 239, 105);
+    display:flex;
+    list-style:none;
+    justify-content:space-around;
+    gap:10px;
+    li{
+        padding:10px;
+    }
+}
 
-.container{
-    display:flex; 
+.container{ 
     max-width: 1440px;
     margin:0 auto;
     padding:0 10px;
-    justify-content:center;
-    flex-wrap:wrap;
-    gap:10px;
-    @for $i from 1 through 12 {
-        .col-#{$i} {
-            width:100px;
-          height: 100px;
-          padding:5px;
-          border:$border; 
-        }
-      }
-}
-.col{
 
-   gap:10px;
 }
-.row{
-    gap:10px;
-    border:$border;
+.row-1{
+    display:flex;   
+    .col-1{
+        
+        margin:5px;
+        background-color: rgb(240, 240, 114);
+    }
+    
 }
+@media only screen and (max-width:500px){
+    .row-1{
+        width:100%;
+    flex-wrap:wrap;
+        background-color:pink;
+    }
+}
+
+.row-2{
+    display:flex;        
+    .col-2{
+        margin:5px;
+        
+        background-color: aqua;
+    }
+    
+}
+
+@media only screen and (max-width: 500px) {
+    .row-2{
+    
+    width:100%;
+    flex-wrap:wrap;
+    flex-direction:column;
+    }
+  }
