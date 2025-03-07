@@ -1,5 +1,5 @@
 h1 {
-  color: #326dee;
+  color: pink;
   margin-bottom: 0.75rem;
 }
 
@@ -10,7 +10,7 @@ a {
 button {
   color: white;
   border: 0;
-  background: #326dee;
+  background: pink;
   border-radius: 20px;
   padding: 0.75rem;
 }
