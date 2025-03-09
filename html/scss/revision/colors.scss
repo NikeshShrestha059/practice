@@ -1,0 +1,24 @@
+
+/*each loop
+@each $key, $val in $color{
+        .text-#{$key}{
+            color: $val
+        }
+        .bg-#{$key}{
+            background-color: $val;
+        }
+}
+
+//condition
+@if ($val ! = black and ! = white){
+//for loop 
+@for $i from 1 through 9{
+    .text-#{$key}-light-#{$i} {
+        color:mix(white, $val, $i * 10);
+    }
+    .text-#{$key}-light-#{$i}{
+        color:mix(white,$val, $i*10);
+    }
+}
+}*/
+
