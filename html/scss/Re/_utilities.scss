@@ -1,0 +1,102 @@
+@use 'sass:math';
+
+$utilities:(
+    //property
+    "padding":(            
+        //map
+        "prefix":"p",
+        "values":(  
+        "0":0,
+        "1":$base-padding,
+        "2":$base-padding * 2,
+        "3":$base-padding * 4,
+        "4":$base-padding * 6,
+        "5":$base-padding * 8
+        ),
+    ),
+    "padding-left":(
+        "prefix":"pl",
+        "values":(
+            "0":0,
+            "1":$base-padding,
+            "2":$base-padding * 2,
+            "3":$base-padding * 4,
+            "4":$base-padding * 6,
+            "5":$base-padding * 8  
+        ),
+    ),
+    "padding-right":(
+        "prefix":"pr",
+        "values":(
+            "0":0,
+            "1":$base-padding,
+            "2":$base-padding * 2,
+            "3":$base-padding * 4,
+            "4":$base-padding * 6,
+            "5":$base-padding * 8  
+        ),
+    ),
+    "margin":(            
+        //map
+        "prefix":"m",
+        "values":(  
+        "0":0,
+        "1":$base-padding,
+        "2":$base-padding * 2,
+        "3":$base-padding * 4,
+        "4":$base-padding * 6,
+        "5":$base-padding * 8
+        ),
+    ),
+    "border-radius":(            
+        //map
+        "prefix":"br",
+        "values":(
+        "default": $base-border-radius,  
+        "none":0,
+        "xs":maths($base-border-radius, 4),
+        "sm":maths($base-border-radius, 2),
+        "lg":$base-border-radius * 2,
+        "full":50%,
+        ),
+    ),
+    "display":(            
+        //map
+        "prefix":"display",
+        "values":(
+        "n":none, 
+        "b": block,
+        "f":flex,
+        "i-b":inline-block,
+        "i":inline
+        ),
+    ),
+    "font":(            
+        //map
+        "prefix":"font",
+        "values":(
+        "sm":$font-size-sm, 
+        "md":$base-font-size,
+        "lg":$font-size-lg,
+        "xl":$font-size-xl
+        )
+    )
+);
+//generating utility class
+@each $property, $map in $utilities{
+    $prefix: map-get($map, "prefix");
+    $values: map-get($map, "values");
+
+    @each $k, $v in $values{
+        @if($k == "default"){
+            .#{$prefix}{
+                #{$property}:$v;
+            }
+        }
+        @else{
+            .#{$prefix}-#{$k}{
+                #{$property}:$v;
+            }
+        }
+    }
+}
