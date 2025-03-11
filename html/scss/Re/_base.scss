@@ -1,4 +1,4 @@
-//variables
+
 
 //Color theme
 $primary:pink;
@@ -7,7 +7,7 @@ $secondary: #1ac888;
 $error: #d32752;
 $info: #f6c31c;
 
-$color:(
+$colors: (
  "primary":$primary,
  "secondary":$secondary,
  "error":$error,
@@ -40,4 +40,5 @@ $font-size-sm:$base-font-size*0.75;
 $font-size-lg:$base-font-size*1.5;
 $font-size-xl:$base-font-size*2;
 $font-size-2xl:$base-font-size*3;
+
 

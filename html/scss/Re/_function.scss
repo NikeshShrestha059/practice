@@ -1,0 +1,10 @@
+@function light-comp($color){
+    $complement:complement($color);
+    $light-complement: light($complement,30%);
+    @return $light-complement;
+}
+// @function light-comp($color) {
+//     $complement: complement($color); // Calculate the complement by adjusting hue by 180 degrees
+//     $light-complement: lighten($complement, 30%); // Lighten the complement by 30%
+//     @return $light-complement;
+// }

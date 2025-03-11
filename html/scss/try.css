@@ -1,90 +1,99 @@
-table {
-  width: 300px;
-  height: 90px;
-}
-table th button {
-  float: right;
-  border: 1px solid blue;
-  background-color: blue;
-  border-radius: 5px;
-}
-table th .work {
-  display: flex;
-}
-table td {
-  display: flex;
+* {
+  box-sizing: border-box;
 }
 
-table {
-  width: 300px;
-  height: 90px;
-}
-table th button {
-  float: right;
-  border: 1px solid blue;
-  background-color: blue;
-  border-radius: 5px;
-}
-table th .work {
-  display: flex;
-}
-table td {
-  display: flex;
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 
-.card-no2 {
-  background-color: aqua;
-  width: 800px;
-  height: 300px;
-  margin-top: 10px;
-  display: block;
-}
-.card-no2 .bg {
-  background-image: url(../img/OIP\ \(1\).jpg);
-  width: auto;
-  height: 120px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-}
-.card-no2 .bg span {
-  padding: 14px;
-  width: 600px;
-  font-size: 29px;
-  color: white;
-}
-.card-no2 .bg .button {
-  width: 100px;
-}
-.card-no2 .bg button {
-  width: 100px;
-  padding: 4px;
-  background-color: blue;
-  border-radius: 5px;
-  border: 1px solid blue;
-  margin-bottom: 12px;
-}
-.card-no2 img {
-  width: 150px;
-  z-index: 3;
-  border-radius: 100px;
+[class*=col-] {
   float: left;
+  padding: 15px;
+  border: 1px solid red;
 }
-.card-no2 .foot {
+
+.col-1 {
+  width: 8.3333333333%;
+}
+
+.col-2 {
+  width: 16.6666666667%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.col-4 {
+  width: 33.3333333333%;
+}
+
+.col-5 {
+  width: 41.6666666667%;
+}
+
+.col-6 {
+  width: 50%;
+}
+
+.col-7 {
+  width: 58.3333333333%;
+}
+
+.col-8 {
+  width: 66.6666666667%;
+}
+
+.col-9 {
+  width: 75%;
+}
+
+.col-10 {
+  width: 83.3333333333%;
+}
+
+.col-11 {
+  width: 91.6666666667%;
+}
+
+.col-12 {
+  width: 100%;
+}
+
+* {
+  color: black;
+  font-size: 14px;
+}
+
+.login {
   width: 300px;
+  height: 300px;
   background-color: white;
-  margin: 5px;
+  color: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 5px;
 }
-.card-no2 .foot .top {
-  display: flex;
-  list-style: none;
-  justify-content: space-around;
+.login h1 {
+  background-color: blue;
+  width: 300px;
+  border: 1px solid black;
+  background-color: blue;
 }
-.card-no2 .foot .down {
+.login input {
+  margin-top: 20px;
+}
+.login footer {
+  padding-top: 50px;
+}
+
+body {
   display: flex;
-  list-style: none;
-  justify-content: space-around;
+  justify-content: center;
+  align-content: end;
 }
 
 * {
