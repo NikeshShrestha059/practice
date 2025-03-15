@@ -41,11 +41,35 @@ $utilities:(
         "prefix":"m",
         "values":(  
         "0":0,
-        "1":$base-padding,
-        "2":$base-padding * 2,
-        "3":$base-padding * 4,
-        "4":$base-padding * 6,
-        "5":$base-padding * 8
+        "1":$base-margin,
+        "2":$base-margin * 2,
+        "3":$base-margin * 4,
+        "4":$base-margin * 6,
+        "5":$base-margin * 8
+        ),
+    ),
+    "margin-bottom":(            
+        //map
+        "prefix":"mb",
+        "values":(  
+        "0":0,
+        "1":$base-margin,
+        "2":$base-margin * 2,
+        "3":$base-margin * 4,
+        "4":$base-margin * 6,
+        "5":$base-margin * 8
+        ),
+    ),
+    "margin-top":(            
+        //map
+        "prefix":"mt",
+        "values":(  
+        "0":0,
+        "1":$base-margin,
+        "2":$base-margin * 2,
+        "3":$base-margin * 4,
+        "4":$base-margin * 6,
+        "5":$base-margin * 8
         ),
     ),
     "border-radius":(            
