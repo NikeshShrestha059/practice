@@ -25,7 +25,3 @@ const student = {  //Object (colllection os data)
 student["age"]= student["age"]-1;
 student["fullName"]= "nikesh Shrestha";
 console.log(student);
-
-const profile ={
-
-}
