@@ -39,3 +39,55 @@ console.log("cond1 || cond2 =",cond1 || cond2); //logical OR   (2 ta condition m
 console.log("cond1 ! cond2 =",!(cond1<cond2));  // logical NOT (jun valu auxa tesko ulto ans dinxa )*/
 
 //Conditional Statement 
+let age = 15; 
+let num = 2;
+
+// if statement 
+/*if(age>=18){
+    console.log("you can vote");     
+}
+if(age<18){
+    console.log("you cannot vote");
+}*/
+
+// if elsa statement
+/*if(num %2==0){
+    console.log("Even");     
+}else{
+    console.log("Odd");
+}*/
+
+//else if  statement 
+/*if (mark >= 60){
+    console.log("you have passed with good marks");
+}else if (mark >=35){
+    console.log("you have passed but need to try hard for the next year");
+}else{
+    console.log("you have fail try again next year");
+}*/
+
+//Ternary Operater
+// age >18? adult : not adult
+
+
+// qno:1
+/*let mul=prompt("Enter the number");
+if(mul %5==0){
+    console.log(mul,"the number can be multiple by 5");
+}else{
+    console.log(mul, "It cannot be multiple by 5");
+}*/
+
+//qno:2
+/*let mark = prompt("Enter your marks");
+if(mark >=80 && mark<= 100){
+    console.log("A");
+}else if(mark >= 70 && mark<= 89){
+    console.log("B");
+}else if(mark >= 60 && mark<= 79){
+    console.log("C");
+}else if(mark >= 50 && mark<= 69){
+    console.log("D");
+}else if(mark >= 0 && mark<= 59){
+    console.log("F");
+} */
