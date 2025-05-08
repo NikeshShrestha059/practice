@@ -1,27 +1,19 @@
-// console.log("Nikesh Shrestha");
-//variables
-fullname="nikesh shrestha";
-FullName="Don dai";
-let Address ="Sindhupalchok";//let can be updated
-Address="lokanthali";
-var age=19;// var can be updated and re-declared
-var age=20;
-var age=21;
-var age=22;
-const DOB=2003;// const cannot do both(update,re-declare)
-console.log(Address);
-console.log(age);
-console.log(DOB);
+let array=[3,2,5,1,2,8,10];
+console.log("USING FOR-in LOOP")
+for(let j in array){ 
+    console.log(j)
+}
+console.log("======================")
 
-//data type    
-const student = {  //Object (colllection os data)
-    fullName:"Nikesh Shrestha", //string
-    age:22, //number
-    GPA:3.9, //number
-    pass:"true",//boolean
-};
-//update in the object
-// const ma object ma xa vanya update hunxa 
-student["age"]= student["age"]-1;
-student["fullName"]= "nikesh Shrestha";
-console.log(student);
+
+let u =0;
+while(u < array.length){
+    console.log("using while loop" ,u);
+    u++;
+}
+for(let i=0; i<array.length;i++){
+  
+    console.log("using for loop ",array[i])
+}
+
+
