@@ -16,3 +16,5 @@ while(u <= array.length){
 for(let key of array){
     console.log("using for of loop ",array.index)
 }
+
+

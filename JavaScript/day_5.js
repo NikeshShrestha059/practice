@@ -35,8 +35,10 @@ for(let per of price){
 let fru_item= ["apple","Banana","Orange","pineapple"];
 fru_item.push("mango");//push adds the item at the last 
 console.log(fru_item);
+
 fru_item.pop();// pop delets the items from the last 
 console.log(fru_item);
+
 console.log(fru_item.toString());
 */
 /*let marvel_heros=["thor","spiderman","ironman"];
@@ -44,18 +46,34 @@ let DC_heros=["superman","batman"];
 let nepali_heros=["Rajesh dai"]
 let heros = marvel_heros.concat(nepali_heros);//concat helps to join the array
 console.log(heros);
+
 marvel_heros.unshift("antman");//adds the items in the start of the array
 console.log(marvel_heros)
+
 marvel_heros.shift();//delets the item which is in the start of the array
 console.log(marvel_heros);
+
 console.log(marvel_heros.slice(2))//index 2 sama ko item print garxa
 let arr=[1,2,3,4,5,6,7,8,9];
+
 arr.splice(1,2,12,13); //replace
+
 arr.splice(1,0,222);//adding 
+
 arr.splice(3,1);// deleteing
 console.log(arr);
-*/
 
+let a =["HTML","CSS","JS"]
+console.log(a.join('|'));//combines the array into a single string  
+
+const a1 = [['1', '2'], ['3', '4', '5',['6'], '7']];
+const a2 = a1.flat(Infinity);
+console.log(a2); removes the nesting and flatten into single level
+*/
+const a =[1,2,3,4,5]
+
+let res = a.some((val)=>val > 9 );
+console.log(res);
 // practice qno
 // create an array "Bloomberg","Microsoft","Uber","Google","IBM","Netflix"
 /*let arr=["Bloomberg","Microsoft","Uber","Google","IBM","Netflix"];
