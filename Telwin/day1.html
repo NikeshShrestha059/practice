@@ -4,35 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
 </head>
 <body>
-    <nav class=" h-8 bg-purple-800 text-white flex justify-between">
-        <span class="flex item-center mx-3 font-bold">PhoneSev</span>
-        <ul class="px-28 flex space-x-11 justify-end hover">
-        <li class="cursor-pointer">Home</li>
-        <li class="cursor-pointer">About</li>
-        <li class="cursor-pointer">Catagory</li>
-        <li class="cursor-pointer">Contact Us</li>
-        </ul>
-    </nav> 
-    <main class="bg-fuchsia-100 flex justify-around">
-    <div class="main py-20 pl-9">
-        <div class="text-6xl">
-            The Best Phone
-        </div>
-        <p class="py-3 w-1/3">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquam ad asperiores, quasi, explicabo modi facilis tenetur fugit dolore voluptatum ullam, id laborum minima quo minus deleniti alias dolorem amet tempore.
-        </p>
-        <div class="my-4">
-            <button class="bg-purple-800 px-3 py-2 rounded-2xl text-white hover:text-purple-900 hover:bg-white hover:border-2 hover:border-purple-900 mx-2">Buy Now</button>
-            <button class="bg-purple-800 px-3 py-2 rounded-2xl text-white hover:text-purple-900 hover:bg-white hover:border-2 hover:border-purple-900 mx-2">Contact us</button>
-        </div>
-    </div>
-    <div class="flex  item-end">
-    <img src="../html/img/mob.webp"class="h-90 w-120 mt-10">
-    </div>
-   
-    </main>
-     <hr>
+    <div id="root"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+
+    <script>
+        const schools = [
+            {
+                name: "laligurans",
+                location: "narephant",
+                id: 1
+            },
+            {
+                name: "LA",
+                location: "satdobato",
+                id: 2   
+            },
+            {
+                name: "LA",
+                location: "satdobato",
+  
+            },
+            
+        ];
+
+        const studentReports = {
+            1: [{
+                name: "nikesh",
+                percentage: "20"
+            }],
+            2: [{
+                name: "test",
+                percentage: "40"
+            }]
+        }
+    </script>
+
+
+     <script>
+        const root = document.querySelector('#root');
+        const table = document.createElement('table');
+        table.border = 1;
+
+        // query, params
+
+        const url = new URLSearchParams(location.search)
+        const isReportPage = url.get('id');
+
+        if(isReportPage){
+            const reports = studentReports[isReportPage]
+            const rows = reports.map(({name, percentage}) => {
+                return `<tr>
+                    <td>
+                        ${name}
+                    </td>
+                    <td>
+                      ${percentage} 
+                    </td>
+                </tr>`
+            })
+
+
+            table.innerHTML = `
+                <thead>
+                    <th>Name</th>
+                    <th>percentage</th>
+                </thead>
+                <tbody>
+                    ${reports.map(({name, percentage}) => {
+                return `<tr>
+                    <td>
+                        ${name}
+                    </td>
+                    <td>
+                      ${percentage} 
+                    </td>
+                </tr>`
+            }),join()}
+                </tbody>
+            `
+
+
+            root.appendChild(table)
+        }else{
+            const rows = schools.map(({name, id}) => {
+                return `<tr>
+                    <td>
+                        ${name}
+                    </td>
+                    <td>
+                        <a href="/Telwin/day1.html?id=${id}">View reports</a>
+                    </td>
+                </tr>`
+            })
+
+
+            table.innerHTML = `
+                <thead>
+                    <th>Name</th>
+                    <th>Action</th>
+                </thead>
+                <tbody>
+                    ${rows.join("")}
+                </tbody>
+            `
+
+
+            root.appendChild(table)
+        }
+
+    </script>
 </body>
 </html>
