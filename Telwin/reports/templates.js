@@ -47,7 +47,6 @@ const createReportsPage = (table, root, reports) => {
             </tr>`
         
     });
-    console.log(science);
     table.innerHTML = getTableContent(['Name', 'Science', 'Math', 'English', 'Nepali', 'Encironment', 'Percentage'], rows)
     root.appendChild(table)
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Form to Table</title>
+</head>
+<body>
+  <div>
+    <h1>Form</h1>
+    <form id="schoolForm" class="flex flex-col justify-center w-50">
+      <label for="name">School Name:</label>
+      <input type="text" id="name" name="name" class="border-2 border-gray-200" />
+
+      <label for="location">Location</label>
+      <input type="text" id="location" name="location" class="border-2 border-gray-200" />
+
+      <label for="checkbox">Is Disabled</label>
+      <input type="checkbox" id="checkbox" name="checkbox" />
+
+      <button type="button" id="button" class="mx-auto w-40 my-4 bg-green-600 text-white rounded-md font-bold p-2 float-center">
+        Submit
+      </button>
+    </form>
+
+    <div id="tableContainer" class="mt-8">
+      <table border="1" id="dataTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>School Name</th>
+            <th>Location</th>
+            <th>Is Disabled</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const data = {};
+    let id = 1;
+
+    document.getElementById("button").onclick = () => {
+      const form = document.getElementById("schoolForm");
+      const formData = new FormData(form);
+
+      const entry = {
+        name: formData.get("name"),
+        location: formData.get("location"),
+        isDisabled: document.getElementById("checkbox").checked
+      };
+
+      data[id] = entry;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${id}</td>
+        <td>${entry.name}</td>
+        <td>${entry.location}</td>
+        <td>${entry.isDisabled ? "Yes" : "No"}</td>
+      `;
+
+      document.getElementById("tableBody").appendChild(row);
+      id++;
+      form.reset(); 
+    };
+  </script>
+</body>
+</html>
