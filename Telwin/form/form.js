@@ -1,17 +1,27 @@
-document.getElementById("userForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from submitting normally
+const data = {};
+    let id = 1;
 
-    // Get form data
-    let name = document.getElementById("name").value;
-    let location = document.getElementById("location").value;
-    let isDisabled = document.getElementById("checkbox").checked;
+    document.getElementById("button").onclick = () => {
+      const form = document.getElementById("schoolForm");
+      const formData = new FormData(form);
 
-    // Store data in an object
-    let formData = {
-        name: name,
-        location: location,
-        isDisabled: isDisabled
+      const entry = {
+        name: formData.get("name"),
+        location: formData.get("location"),
+        isDisabled: document.getElementById("checkbox").checked
+      };
+
+      data[id] = entry;
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${id}</td>
+        <td>${entry.name}</td>
+        <td>${entry.location}</td>
+        <td>${entry.isDisabled ? "Yes" : "No"}</td>
+      `;
+
+      document.getElementById("tableBody").appendChild(row);
+      id++;
+      form.reset(); 
     };
-
-    console.log(formData); // Logs the form data object
-});
