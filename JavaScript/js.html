@@ -4,58 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./js.css">
-
+    <style>
+        h2{
+            
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            font-size:100px;
+        }
+    </style>
 </head>
 <body>
     
-    <!--<div id="box" name="jsdiv"> this is div
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>
-    <p class="para">this is paragraph</p>
-    
-     <h1 id="topic">DOM</h1>
-    <h2 class="blue">Document Object Model</h2>
-    <p class="blue">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Unde magni labore minima sapiente quasi, nulla dolores 
-        magnam neque quo voluptatibus maxime. Explicabo, iure quis incidunt voluptate laborum cupiditate quasi veniam.</p>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente totam cumque maxime laboriosam illum similique, aut a quae labore tenetur illo aliquam, earum nostrum 
-        impedit voluptate error deleniti debitis? Quibusdam.</p>  
-         
-    <div>
-        <h2>Number</h2>
-        <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-        </ul>
-    </div>
-    <h2>Hello JavaScript</h2>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>
-    <div class="nike">First </div>
-    <div class="nike">Second</div>
-    <div class="nike">Third</div>-->
-    
+    <h2></h2>
+    <input>
+
     </body>
-    <script src="./event.js"></script>
+    <script>
+        let input =document.querySelector('input');
+        let output = document.querySelector('h2');
+        
+        input.addEventListener("keydown",function(e){
+            output.textContent = e.which;
+            input.value = "";
+        });
+</script>
 </html>

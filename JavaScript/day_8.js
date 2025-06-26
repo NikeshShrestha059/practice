@@ -9,12 +9,14 @@ console.log(name);
 setAttribute
 div.setAttribute("id","nike");//change the name of the id from box to nike
 */
+
 //.style
 /*let div = document.querySelector("div");
 div.style.backgroundColor="red";
 div.style.fontSize="29px";
 div.innerText="Hello";
 */
+
 //insert Element
 let newBtn = document.createElement("button");
 newBtn.innerText="click me";
