@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../html/scss/flex.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+            <button class="reveal-btn boxes">
+                Reveal More
+            </button>
+            <div class="hidden-content boxes">
+            <nav>
+            <ul>
+                <li class="list">Home</li>
+                <li class="list">About</li>
+                <li class="list">Document</li>
+                <li class="list">Service</li>
+                <li class="list">Contact</li>
+            </ul>
+        </nav>
+            </div>
+    </div>
+    <!-- <div class="container">
+        <h2>Heading</h2>
+        <nav>
+            <ul>
+                <li class="list">Home</li>
+                <li class="list">About</li>
+                <li class="list">Document</li>
+                <li class="list">Service</li>
+                <li class="list">Contact</li>
+            </ul>
+        </nav> -->
+        
+        <!--<div class="row-3">
+            <div class="col-7">7</div>
+            <div class="col-8">8</div>
+            <div class="col-9">9</div>
+        </div> -->
+    </div>
+    <button class="Submit">submit</button>
+</body>
+<script>
+    const hidden = document.querySelector('.hidden-content');
+    
+    const reveal = document.querySelector('.reveal-btn');
+    reveal.addEventListener('click',function(){
+        if(hidden.classList.contains('reveal-btn')){
+            hidden.classList.remove('reveal-btn')
+        }else{
+             hidden.classList.add('reveal-btn')
+        }
+    });
+
+    /* Element selector and Style
+    const ul = document.querySelector('ul');
+    const title = document.querySelector('h2');
+    title.style.color="red";
+    console.log(title);*/
+
+    /* Create add and remove element
+    // const li = document.createElement('li');//li tag create garcha
+    // //li.remove(); tag lai nai remove garcha.
+    // li.innerText='Home' ; // li ma text add garcha
+    // li.classList.add('list');//class add garcha
+    //  ul.append(li);*/
+
+     /* Traversal
+    Parent
+    console.log(li.parentNode);// parent Traverse
+    console.log(li.parentElement);
+
+    Child
+    console.log(ul.childNodes); //child traverse (first,last)
+    ul.childNodes[1].style.color = "blue" ;
+
+    Sibling
+    const nav = document.querySelector('nav');
+    console.log(nav.previousElementSibling);
+    console.log(nav.nextElementSibling);
+    */
+   
+    /*Events
+   const body = document.querySelector('body');
+   const button=document.querySelector('.Submit');
+   button.addEventListener('click',function(){
+    body.style.backgroundColor = "red";
+   });
+   */
+
+</script>
+</html>

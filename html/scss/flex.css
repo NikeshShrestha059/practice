@@ -11,8 +11,9 @@ ul {
   justify-content: space-around;
   gap: 10px;
 }
-ul li {
+ul .list {
   padding: 10px;
+  color: white;
 }
 
 .container {

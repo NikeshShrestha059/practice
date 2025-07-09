@@ -1,0 +1,72 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+    }
+
+    .navbar a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 20px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #575757;
+    }
+
+    .navbar a.active {
+      background-color: #04AA6D;
+    }
+        .hidden-content{
+            display:none;
+        }
+        .hidden-content.reveal-btn{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <button class="reveal-btn boxes">
+                Reveal More
+            </button>
+            <div class="hidden-content boxes">
+                <div class="navbar">
+                <a href="#" class="active">Home</a>
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Contact</a>
+              </div>
+            </div>
+    </div>
+</body>
+<script>
+    const hidden = document.querySelector('.hidden-content');
+    
+    const reveal = document.querySelector('.reveal-btn');
+    reveal.addEventListener('click',function(){
+        if(hidden.classList.contains('reveal-btn')){
+            hidden.classList.remove('reveal-btn')
+        }else{
+             hidden.classList.add('reveal-btn')
+        }
+    });
+</script>
+</html> 
+

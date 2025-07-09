@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do list</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script> -->
+</head>
+ <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .task { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 8px; 
+            border: 1px solid #ccc; 
+            border-radius: 6px; 
+            margin-top: 8px;
+        }
+        .task span { flex-grow: 1; margin-left: 10px; }
+        .task button { margin-left: 5px; }
+    </style>
+<body>
+    <form>
+        <input type="text" placeholder="Enter task">
+        <button type="submit">Add</button>
+    </form>
+    <div class="error" style="color: red; display: none;"></div>
+    <div class="tasks"></div>
+
+    <script>
+        let tasks = [];
+
+        const createTask = (task, index) => {
+            return `
+            <div data-task-index=${index} class="task">
+                <span>${task}</span>
+                <input type="checkbox">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+            </div>
+            `
+        }
+
+        const renderTasks = () => {
+            const div = document.querySelector('.tasks');
+            const allTasks = tasks.map((task, index) => createTask(task.task, index));
+            div.innerHTML = allTasks.join("\n");
+
+            // edit
+            document.querySelectorAll('.edit-btn').forEach((editBtn) => {
+                editBtn.addEventListener('click', function(e){
+                    const element = e.target;
+                    const parent = element.parentElement;
+                    const span = parent.querySelector('span')
+                    const input = document.querySelector('input[type="text"]');
+                    input.value = span.textContent
+                    input.focus();
+                    const submitButton = document.querySelector('form button[type="submit"]');
+                    submitButton.textContent = 'UPDATE';
+                    document.querySelector('form').setAttribute('data-update', 1)
+                    parent.setAttribute('is-updating', true)
+                });
+            });
+
+            // delete
+            document.querySelectorAll('.delete-btn').forEach((deleteBtn) => {
+                deleteBtn.addEventListener('click', function(e){
+                    const parent = e.target.parentElement;
+                    const index = parseInt(parent.getAttribute('data-task-index'));
+                    tasks.splice(index, 1);
+                    renderTasks();
+                });
+            });
+        };
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const isUpdate = Boolean(e.target.getAttribute('data-update'))
+            const input = document.querySelector('input[type="text"]'); 
+            const errorEl = document.querySelector('.error')
+
+            if (!input.value) return false;
+
+            const isAlreadyCreated = tasks.some(x => x.task === input.value)
+            if (isAlreadyCreated) {
+                errorEl.textContent = "Task already exists";
+                input.focus();
+                errorEl.style.display = "block"
+                return;
+            } else {
+                errorEl.textContent = "";
+                errorEl.style.display = "none"
+            }
+
+            if (isUpdate) {
+                const updatingTask = document.querySelector('.tasks > [is-updating="true"]');
+                const taskIndex = updatingTask.getAttribute('data-task-index')
+                tasks[parseInt(taskIndex)].task = input.value;
+                document.querySelector('form').removeAttribute('data-update');
+                document.querySelector('form button[type="submit"]').textContent = 'Add';
+            } else {
+                const newTask = {task: input.value, done: false};
+                tasks = [newTask, ...tasks];
+            }
+
+            input.value = "";
+            input.focus();
+            renderTasks();
+        });
+    </script>
+</body>
+</html>
+
+
+
+ <!-- // Load departments from localStorage on page load
+    // window.onload = () => {
+    //   const stored = localStorage.getItem('departments');
+    //   if (stored) {
+    //     departments = JSON.parse(stored);
+    //     updateDepartmentSelect();
+    //     updateDepartmentsTable();
+    //   }
+    // }; -->

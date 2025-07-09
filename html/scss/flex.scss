@@ -15,8 +15,9 @@ ul{
     list-style:none;
     justify-content:space-around;
     gap:10px;
-    li{
+    .list{
         padding:10px;
+        color:white;
     }
 }
 
@@ -26,6 +27,7 @@ ul{
     padding:0 10px;
 
 }
+
 .row-1{
     display:flex; 
     .col-1 {  

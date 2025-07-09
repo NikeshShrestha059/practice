@@ -5,28 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        h2{
+        h4{
             
             display:flex;
             justify-content:center;
             align-items:center;
-            font-size:100px;
+            
         }
     </style>
 </head>
 <body>
-    
-    <h2></h2>
-    <input>
+    <h4></h4>
+   
+   <!-- 
+    question
+    quiz type (radio) - checkbox / radio
+    options:
+    submit quiz
+   -->
+    <div id="root"></div>
+  
 
-    </body>
+</body>
     <script>
-        let input =document.querySelector('input');
-        let output = document.querySelector('h2');
-        
-        input.addEventListener("keydown",function(e){
-            output.textContent = e.which;
-            input.value = "";
+        const root = document.querySelector('#root');
+
+        root.innerHTML = `
+            <form>
+                <input type='text' placeholder="Enter question">
+                <div>
+                    <h3>Quiz Type</h3>
+                     <label>
+                        <input type="radio" name="quizType" value="checkbox">
+                        Checkbox
+                        </label>
+
+                        <label>
+                        <input type="radio" name="quizType" value="radio">
+                        Radio
+                        </label>
+                </div>
+            </form>
+            <button>Option:</button>
+            <button id="submit">Submit Quiz</button>
+
+        `
+
+        const input=document.querySelector('input');
+        const head=document.querySelector('h4')
+        const submit = document.querySelector('#submit');
+            submit.addEventListener('click',function(){
+            console.log(input.value);
+            head.innerText=input.value
+            input.value="";
         });
-</script>
+    </script>
 </html>

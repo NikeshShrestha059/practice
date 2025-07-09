@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+</head>
+
+<body class="bg-gray-300 h-screen flex justify-center items-center">
+    
+    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm w-80 flex flex-col items-center">
+        <h3>Log Into Facebook </h3>
+        <form id="loginForm">
+            <div class="form-control relative">
+                <input name="email"  class="rounded-md h-12 px-4 pr-6 my-2 w-full border-2 border-gray-200" type="text" placeholder="Email">
+            </div>
+            <div class="relative">
+
+            <input name="password"  class="rounded-md h-12 px-4 my-2 w-full border-2 border-gray-200" type="password" placeholder="Password">
+            </div>
+
+            <button type="submit" class="w-full my-4 bg-blue-600 text-white rounded-md font-bold p-2 hover:bg-blue-700 login transition">Log In</button>
+        </form>
+            <button class="text-blue-700">Forgot password?</button>
+
+
+
+  </div>
+  <script>
+        const email = document.querySelector('[name="email"]');
+        const password = document.querySelector('[name="password"]');
+        const loginForm = document.querySelector('#loginForm');
+        
+
+        
+
+        loginForm.addEventListener('submit', function(e){
+            e.preventDefault();
+            const doesnotHaveEmailValue = !email.value
+            const doesnotHavePassword = !password.value
+
+
+        Array.from([email, password]).forEach((input) => {
+            input.style.borderColor = "#ccc"
+            input.nextElementSibling.classList.add('hidden')
+
+            if(!input.value){
+                input.style.borderColor = "red"
+                input.nextElementSibling.classList.remove('hidden')
+            }
+         })
+    
+    })
+    </script>
+
+    <script>
+        const alertIcon = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4" viewBox="0 0 512 512" fill="red"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24l0 112c0 13.3-10.7 24-24 24s-24-10.7-24-24l0-112c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>
+        `
+        const svgIcon = document.createElement('div')
+        svgIcon.innerHTML = alertIcon
+        svgIcon.classList.add('w-fit','absolute','translate-x-50','translate-y-[-40px]','hidden');
+        email.parentElement.appendChild(svgIcon)
+
+        const passwordIcon = document.createElement('div')
+        passwordIcon.innerHTML = svgIcon.innerHTML
+
+        passwordIcon.classList.add(...svgIcon.classList)
+        password.parentElement.appendChild(passwordIcon)
+
+        //Array to login 
+        const users=[
+            {email:"Nikesh123@gmail.com",password:"Nikesh"},
+            {email:"admin123@gmail.com",password:"12345"}
+        ];
+        
+        // checking if valid user or not
+       document.querySelector('button[type="submit"]').addEventListener('click', function(event) {
+            event.preventDefault();
+            let foundUser = false;
+
+                for (let i = 0; i < users.length; i++) {
+                    if (users[i].email === email.value && users[i].password === password.value) {
+                    foundUser = true
+                    break; 
+                    }
+                }
+                if (foundUser) {
+                    alert('Valid user');
+                    
+                
+                } else {
+                    alert('Not a valid user.');
+                    email.value="";
+                    password.value="";
+                }
+        });
+
+        
+
+    </script>
+</body>
+</html>

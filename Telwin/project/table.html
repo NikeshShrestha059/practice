@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Department & Teacher Management</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="grid place-items-center min-h-screen bg-gray-100 p-6">
+
+  <!-- Buttons -->
+  <div class="flex gap-4 mb-6">
+    <button id="Department" class="px-4 py-2 bg-purple-700 text-white rounded hover:bg-blue-600 transition">
+      Add Department
+    </button>
+    <button id="Teacher" class="px-4 py-2 bg-purple-700 text-white rounded hover:bg-blue-600 transition">
+      Add Teacher
+    </button>
+  </div>
+
+  <!-- Departments Table -->
+  <div class="w-2/3 max-w-4xl mb-8">
+    <h2 class="text-2xl font-semibold mb-2">Departments</h2>
+    <table class="min-w-full bg-white rounded shadow border">
+      <thead>
+        <tr class="bg-purple-700 text-white">
+          <th class="py-2 px-4 text-left border">ID</th>
+          <th class="py-2 px-4 text-left border">Name</th>
+          <th class="py-2 px-4 text-left border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="departmentsTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Teachers Table -->
+  <div class="w-2/3 max-w-4xl mb-8">
+    <h2 class="text-2xl font-semibold mb-2">Teachers</h2>
+    <table class="min-w-full bg-white rounded shadow border">
+      <thead>
+        <tr class="bg-purple-700 text-white">
+          <th class="py-2 px-4 text-left border">ID</th>
+          <th class="py-2 px-4 text-left border">Name</th>
+          <th class="py-2 px-4 text-left border">Address</th>
+          <th class="py-2 px-4 text-left border">Phone</th>
+          <th class="py-2 px-4 text-left border">Subject</th>
+          <th class="py-2 px-4 text-left border">Department</th>
+          <th class="py-2 px-4 text-left border">Actions</th>
+        </tr>
+      </thead>
+      <tbody id="teachersTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Department Modal -->
+  <div id="department-modal" class="fixed inset-0 z-10 hidden bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-10 rounded shadow-lg w-2/3 max-w-xl">
+      <h3 class="modal-title text-3xl uppercase font-medium text-purple-700 tracking-wider mb-4">Add Department</h3>
+      <form class="departmentForm text-lg text-gray-600">
+        <input type="text" placeholder="Department Name" class="dep-name w-full mb-2 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500" />
+        <div class="error_Name text-red-600 text-sm mb-2"></div>
+        <input type="number" placeholder="Department ID" class="dep-id w-full mb-4 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500" />
+        <div class="error_Id text-red-600 text-sm mb-2"></div>
+        <button type="submit" id="det_submit" class="bg-red-500 text-white py-2 px-6 rounded hover:bg-red-600 transition w-full">
+          Submit
+        </button>
+      </form>
+      <button id="det_close" class="mt-4 bg-gray-400 text-white py-2 px-6 rounded hover:bg-gray-500 transition w-full">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- Teacher Modal -->
+  <div id="teacher-modal" class="fixed inset-0 z-10 hidden bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-10 rounded shadow-lg w-2/3 max-w-xl">
+      <h3 class="modal-title text-3xl uppercase font-medium text-purple-700 tracking-wider mb-4">Add Teacher</h3>
+      <form class="teacherForm text-lg text-gray-600">
+        <input type="text" readonly placeholder="Teacher ID" class="teacher-id w-full mb-4 px-4 py-2 border rounded bg-gray-100 cursor-not-allowed" />
+
+        <input type="text" placeholder="Teacher Name" class="teacher-name w-full mb-1 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500" />
+        <div class="error_Tname text-red-600 text-sm mb-2"></div>
+
+        <input type="text" placeholder="Address" class="teacher-address w-full mb-1 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500" />
+        <div class="error_Address text-red-600 text-sm mb-2"></div>
+
+        <input type="text" placeholder="Phone" class="teacher-phone w-full mb-1 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500" />
+        <div class="error_Phone text-red-600 text-sm mb-2"></div>
+
+        <input type="text" placeholder="Subject" class="teacher-subject w-full mb-4 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500" />
+        <div class="error_Subject text-red-600 text-sm mb-4"></div>
+
+        <select class="teacher-department w-full mb-6 px-4 py-2 border rounded focus:ring-2 focus:ring-blue-500"></select>
+
+        <button type="submit" id="tch_submit" class="bg-red-500 text-white py-2 px-6 rounded hover:bg-red-600 transition w-full">
+          Submit
+        </button>
+      </form>
+      <button id="tch_close" class="mt-4 bg-gray-400 text-white py-2 px-6 rounded hover:bg-gray-500 transition w-full">
+        Close
+      </button>
+      <div class="noDepError text-red-600 mt-4 hidden">No departments added yet.</div>
+    </div>
+  </div>
+
+<script>
+  let departments = JSON.parse(localStorage.getItem('departments')) || [];
+  let teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+  let teacherCounter = teachers.length + 1;
+
+  let editingDepartmentIndex = null;
+  let editingTeacherIndex = null;
+
+  // Elements
+  const depBtn = document.getElementById('Department');
+  const depModal = document.getElementById('department-modal');
+  const depForm = depModal.querySelector('.departmentForm');
+  const depCloseBtn = document.getElementById('det_close');
+
+  const tchBtn = document.getElementById('Teacher');
+  const tchModal = document.getElementById('teacher-modal');
+  const tchForm = tchModal.querySelector('.teacherForm');
+  const tchCloseBtn = document.getElementById('tch_close');
+
+  const departmentSelect = tchForm.querySelector('.teacher-department');
+
+  const departmentsTableBody = document.getElementById('departmentsTableBody');
+  const teachersTableBody = document.getElementById('teachersTableBody');
+
+  const departmentName = depForm.querySelector('.dep-name');
+  const departmentId = depForm.querySelector('.dep-id');
+  const noDepartment = document.querySelector('.noDepError');
+
+  const modalTitles = document.querySelectorAll('.modal-title');
+
+  // Teacher error elements
+  const errorTeacherName = tchForm.querySelector('.error_Tname');
+  const errorTeacherAddress = tchForm.querySelector('.error_Address');
+  const errorTeacherPhone = tchForm.querySelector('.error_Phone');
+  const errorTeacherSubject = tchForm.querySelector('.error_Subject');
+
+  // --- Initialize ---
+  window.onload = () => {
+    updateDepartmentSelect();
+    updateDepartmentsTable();
+    updateTeachersTable();
+  };
+
+  // --- Department Handlers ---
+  depBtn.addEventListener('click', () => {
+    resetDepartmentForm();
+    editingDepartmentIndex = null;
+    depModal.classList.remove('hidden');
+    modalTitles[0].textContent = "Add Department";
+    departmentName.focus();
+  });
+
+  depCloseBtn.addEventListener('click', () => depModal.classList.add('hidden'));
+
+  depForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name = departmentName.value.trim();
+    const id = departmentId.value.trim();
+
+    const idEr = depForm.querySelector('.error_Id');
+    const nameEr = depForm.querySelector('.error_Name');
+
+    idEr.textContent = '';
+    nameEr.textContent = '';
+
+    if (!name) {
+      nameEr.textContent = "Please enter department name.";
+      departmentName.focus();
+      return;
+    }
+    if (!id) {
+      idEr.textContent = "Please enter department ID.";
+      departmentId.focus();
+      return;
+    }
+
+    if (editingDepartmentIndex !== null) {
+      if (departments.some((d, i) => d.id === id && i !== editingDepartmentIndex)) {
+        idEr.textContent = "ID already exists.";
+        departmentId.focus();
+        return;
+      }
+      departments[editingDepartmentIndex] = { id, name };
+    } else {
+      if (departments.some(dep => dep.id === id)) {
+        idEr.textContent = "ID already exists.";
+        departmentId.focus();
+        return;
+      }
+      departments.push({ id, name });
+    }
+
+    localStorage.setItem('departments', JSON.stringify(departments));
+    updateDepartmentSelect();
+    updateDepartmentsTable();
+    depModal.classList.add('hidden');
+  });
+
+  // --- Teacher Handlers ---
+  tchBtn.addEventListener('click', () => {
+    if (!departments.length) {
+      noDepartment.classList.remove('hidden');
+      return;
+    }
+    noDepartment.classList.add('hidden');
+    resetTeacherForm();
+    editingTeacherIndex = null;
+    tchForm.querySelector('.teacher-id').value = `Teacher${teacherCounter}`;
+    modalTitles[1].textContent = "Add Teacher";
+    tchModal.classList.remove('hidden');
+    tchForm.querySelector('.teacher-name').focus();
+  });
+
+  tchCloseBtn.addEventListener('click', () => tchModal.classList.add('hidden'));
+
+  tchForm.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const id = tchForm.querySelector('.teacher-id').value;
+    const name = tchForm.querySelector('.teacher-name').value.trim();
+    const address = tchForm.querySelector('.teacher-address').value.trim();
+    const phone = tchForm.querySelector('.teacher-phone').value.trim();
+    const subject = tchForm.querySelector('.teacher-subject').value.trim();
+    const deptId = departmentSelect.value;
+
+    errorTeacherName.textContent = '';
+    errorTeacherAddress.textContent = '';
+    errorTeacherPhone.textContent = '';
+    errorTeacherSubject.textContent = '';
+
+    let hasError = false;
+
+    if (!name) {
+      errorTeacherName.textContent = "Please enter teacher name.";
+      hasError = true;
+    }
+    if (!address) {
+      errorTeacherAddress.textContent = "Please enter address.";
+      hasError = true;
+    }
+    if (!phone) {
+      errorTeacherPhone.textContent = "Please enter phone.";
+      hasError = true;
+    }
+    if (!subject) {
+      errorTeacherSubject.textContent = "Please enter subject.";
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    const dept = departments.find(d => d.id === deptId);
+
+    if (editingTeacherIndex !== null) {
+      teachers[editingTeacherIndex] = { id, name, address, phone, subject, department: dept };
+    } else {
+      teachers.push({ id, name, address, phone, subject, department: dept });
+      teacherCounter++;
+    }
+
+    localStorage.setItem('teachers', JSON.stringify(teachers));
+    updateTeachersTable();
+    tchModal.classList.add('hidden');
+  });
+
+  // --- Update UI ---
+  function updateDepartmentSelect() {
+    departmentSelect.innerHTML = '';
+    departments.forEach(dep => {
+      const option = document.createElement('option');
+      option.value = dep.id;
+      option.textContent = dep.name;
+      departmentSelect.appendChild(option);
+    });
+  }
+
+  function updateDepartmentsTable() {
+    departmentsTableBody.innerHTML = '';
+    departments.forEach((dep, i) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="py-2 px-4 border">${dep.id}</td>
+        <td class="py-2 px-4 border">${dep.name}</td>
+        <td class="py-2 px-4 border">
+          <button class="edit-btn bg-purple-700 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition">Edit</button>
+          <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+        </td>`;
+      row.querySelector('.edit-btn').addEventListener('click', () => editDepartment(i));
+      row.querySelector('.delete-btn').addEventListener('click', () => deleteDepartment(i));
+      departmentsTableBody.appendChild(row);
+    });
+  }
+
+  function updateTeachersTable() {
+    teachersTableBody.innerHTML = '';
+    teachers.forEach((tch, i) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td class="py-2 px-4 border">${tch.id}</td>
+        <td class="py-2 px-4 border">${tch.name}</td>
+        <td class="py-2 px-4 border">${tch.address}</td>
+        <td class="py-2 px-4 border">${tch.phone}</td>
+        <td class="py-2 px-4 border">${tch.subject}</td>
+        <td class="py-2 px-4 border">${tch.department.name}</td>
+        <td class="py-2 px-4 border">
+          <button class="edit-btn bg-purple-700 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition">Edit</button>
+          <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+        </td>`;
+      row.querySelector('.edit-btn').addEventListener('click', () => editTeacher(i));
+      row.querySelector('.delete-btn').addEventListener('click', () => deleteTeacher(i));
+      teachersTableBody.appendChild(row);
+    });
+  }
+
+  // --- Form reset ---
+  function resetDepartmentForm() {
+    departmentName.value = '';
+    departmentId.value = '';
+    depForm.querySelector('.error_Name').textContent = '';
+    depForm.querySelector('.error_Id').textContent = '';
+  }
+
+  function resetTeacherForm() {
+    tchForm.reset();
+    errorTeacherName.textContent = '';
+    errorTeacherAddress.textContent = '';
+    errorTeacherPhone.textContent = '';
+    errorTeacherSubject.textContent = '';
+  }
+
+  // --- Edit/Delete ---
+  function editDepartment(index) {
+    editingDepartmentIndex = index;
+    modalTitles[0].textContent = "Edit Department";
+    departmentName.value = departments[index].name;
+    departmentId.value = departments[index].id;
+    depModal.classList.remove('hidden');
+  }
+
+ function deleteDepartment(index) {
+  const depId = departments[index].id.toString(); // ensure string
+  // Filter out teachers that do NOT belong to this department
+  teachers = teachers.filter(t => t.department && t.department.id.toString() !== depId);
+
+  // Save updated teachers list
+  localStorage.setItem('teachers', JSON.stringify(teachers));
+
+  // Remove the department
+  departments.splice(index, 1);
+  localStorage.setItem('departments', JSON.stringify(departments));
+
+  // Refresh
+  updateDepartmentSelect();
+  updateDepartmentsTable();
+  updateTeachersTable();
+}
+
+
+  function editTeacher(index) {
+    editingTeacherIndex = index;
+    modalTitles[1].textContent = "Edit Teacher";
+    const t = teachers[index];
+    tchForm.querySelector('.teacher-id').value = t.id;
+    tchForm.querySelector('.teacher-name').value = t.name;
+    tchForm.querySelector('.teacher-address').value = t.address;
+    tchForm.querySelector('.teacher-phone').value = t.phone;
+    tchForm.querySelector('.teacher-subject').value = t.subject;
+    departmentSelect.value = t.department.id;
+    tchModal.classList.remove('hidden');
+  }
+
+  function deleteTeacher(index) {
+    teachers.splice(index, 1);
+    localStorage.setItem('teachers', JSON.stringify(teachers));
+    updateTeachersTable();
+  }
+</script>
+
+</body>
+</html>
