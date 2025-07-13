@@ -8,7 +8,6 @@
 </head>
 <body class="grid place-items-center min-h-screen bg-gray-100 p-6">
 
-  <!-- Buttons -->
   <div class="flex gap-4 mb-6">
     <button id="Department" class="px-4 py-2 bg-purple-700 text-white rounded hover:bg-blue-600 transition">
       Add Department
@@ -18,7 +17,6 @@
     </button>
   </div>
 
-  <!-- Departments Table -->
   <div class="w-2/3 max-w-4xl mb-8">
     <h2 class="text-2xl font-semibold mb-2">Departments</h2>
     <table class="min-w-full bg-white rounded shadow border">
@@ -33,7 +31,7 @@
     </table>
   </div>
 
-  <!-- Teachers Table -->
+ 
   <div class="w-2/3 max-w-4xl mb-8">
     <h2 class="text-2xl font-semibold mb-2">Teachers</h2>
     <table class="min-w-full bg-white rounded shadow border">
@@ -52,7 +50,7 @@
     </table>
   </div>
 
-  <!-- Department Modal -->
+  
   <div id="department-modal" class="fixed inset-0 z-10 hidden bg-black bg-opacity-50 flex items-center justify-center">
     <div class="bg-white p-10 rounded shadow-lg w-2/3 max-w-xl">
       <h3 class="modal-title text-3xl uppercase font-medium text-purple-700 tracking-wider mb-4">Add Department</h3>
@@ -71,7 +69,7 @@
     </div>
   </div>
 
-  <!-- Teacher Modal -->
+  
   <div id="teacher-modal" class="fixed inset-0 z-10 hidden bg-black bg-opacity-50 flex items-center justify-center">
     <div class="bg-white p-10 rounded shadow-lg w-2/3 max-w-xl">
       <h3 class="modal-title text-3xl uppercase font-medium text-purple-700 tracking-wider mb-4">Add Teacher</h3>
@@ -104,282 +102,276 @@
   </div>
 
 <script>
-  let departments = JSON.parse(localStorage.getItem('departments')) || [];
-  let teachers = JSON.parse(localStorage.getItem('teachers')) || [];
-  let teacherCounter = teachers.length + 1;
+     
+      let departments = JSON.parse(localStorage.getItem('departments')) || [];
+      let teachers = JSON.parse(localStorage.getItem('teachers')) || [];
+      let teacherCounter = teachers.length + 1;
 
-  let editingDepartmentIndex = null;
-  let editingTeacherIndex = null;
+      // state
+      let editingDepartmentIndex = null;
+      let editingTeacherIndex = null;
 
-  // Elements
-  const depBtn = document.getElementById('Department');
-  const depModal = document.getElementById('department-modal');
-  const depForm = depModal.querySelector('.departmentForm');
-  const depCloseBtn = document.getElementById('det_close');
+      const depBtn = document.getElementById('Department'); // id examples: id-test < id_test ID_TEST idTest js--department
+      const depModal = document.getElementById('department-modal');
+      const depForm = depModal.querySelector('.departmentForm');
+      const depCloseBtn = document.getElementById('det_close');
 
-  const tchBtn = document.getElementById('Teacher');
-  const tchModal = document.getElementById('teacher-modal');
-  const tchForm = tchModal.querySelector('.teacherForm');
-  const tchCloseBtn = document.getElementById('tch_close');
+      const tchBtn = document.getElementById('Teacher');
+      const tchModal = document.getElementById('teacher-modal');
+      const tchForm = tchModal.querySelector('.teacherForm'); // class kebab-case
+      const tchCloseBtn = document.getElementById('tch_close');
 
-  const departmentSelect = tchForm.querySelector('.teacher-department');
+      const departmentSelect = tchForm.querySelector('.teacher-department');
 
-  const departmentsTableBody = document.getElementById('departmentsTableBody');
-  const teachersTableBody = document.getElementById('teachersTableBody');
+      const departmentsTableBody = document.getElementById('departmentsTableBody');
+      const teachersTableBody = document.getElementById('teachersTableBody');
 
-  const departmentName = depForm.querySelector('.dep-name');
-  const departmentId = depForm.querySelector('.dep-id');
-  const noDepartment = document.querySelector('.noDepError');
+      const departmentName = depForm.querySelector('.dep-name');
+      const departmentId = depForm.querySelector('.dep-id');
+      const noDepartment = document.querySelector('.noDepError');
 
-  const modalTitles = document.querySelectorAll('.modal-title');
+      const modalTitles = document.querySelectorAll('.modal-title');
 
-  // Teacher error elements
-  const errorTeacherName = tchForm.querySelector('.error_Tname');
-  const errorTeacherAddress = tchForm.querySelector('.error_Address');
-  const errorTeacherPhone = tchForm.querySelector('.error_Phone');
-  const errorTeacherSubject = tchForm.querySelector('.error_Subject');
+      const errorTeacherName = tchForm.querySelector('.error_Tname');
+      const errorTeacherAddress = tchForm.querySelector('.error_Address');
+      const errorTeacherPhone = tchForm.querySelector('.error_Phone');
+      const errorTeacherSubject = tchForm.querySelector('.error_Subject');
 
-  // --- Initialize ---
-  window.onload = () => {
-    updateDepartmentSelect();
-    updateDepartmentsTable();
-    updateTeachersTable();
-  };
+      window.onload = () => {
+        updateDepartmentSelect();
+        updateDepartmentsTable();
+        updateTeachersTable();
+      };
 
-  // --- Department Handlers ---
-  depBtn.addEventListener('click', () => {
-    resetDepartmentForm();
-    editingDepartmentIndex = null;
-    depModal.classList.remove('hidden');
-    modalTitles[0].textContent = "Add Department";
-    departmentName.focus();
-  });
+      depBtn.addEventListener('click', (e) => {
+        resetDepartmentForm();
+       
+        editingDepartmentIndex = null;
+        depModal.classList.remove('hidden');
+        modalTitles[0].textContent = "Add Department";
+        departmentName.focus();
+      });
 
-  depCloseBtn.addEventListener('click', () => depModal.classList.add('hidden'));
+      depCloseBtn.addEventListener('click', () => depModal.classList.add('hidden'));
+      depForm.addEventListener('submit', e => {
+        e.preventDefault();
 
-  depForm.addEventListener('submit', e => {
-    e.preventDefault();
+        const name = departmentName.value.trim();
+        const id = departmentId.value.trim();
 
-    const name = departmentName.value.trim();
-    const id = departmentId.value.trim();
+        const idEr = depForm.querySelector('.error_Id');
+        const nameEr = depForm.querySelector('.error_Name');
 
-    const idEr = depForm.querySelector('.error_Id');
-    const nameEr = depForm.querySelector('.error_Name');
+        idEr.textContent = '';
+        nameEr.textContent = '';
 
-    idEr.textContent = '';
-    nameEr.textContent = '';
+        if (!name) {
+          nameEr.textContent = "Please enter department name.";
+          departmentName.focus();
+          return;
+        }
+        if (!id) {
+          idEr.textContent = "Please enter department ID.";
+          departmentId.focus();
+          return;
+        }
 
-    if (!name) {
-      nameEr.textContent = "Please enter department name.";
-      departmentName.focus();
-      return;
-    }
-    if (!id) {
-      idEr.textContent = "Please enter department ID.";
-      departmentId.focus();
-      return;
-    }
+        if (editingDepartmentIndex !== null) {
+          if (departments.some((d,e,i) => d.id === id && i !== editingDepartmentIndex)) {
+            idEr.textContent = "ID already exists.";
+            departmentId.focus();
+            
+            return;
+          }
+          departments[editingDepartmentIndex] = { id, name };
+        } else {
+          if (departments.some(dep => dep.id === id)) {
+            idEr.textContent = "ID already exists.";
+            departmentId.focus();
+            
+          }
+          departments.push({ id, name });
+        }
 
-    if (editingDepartmentIndex !== null) {
-      if (departments.some((d, i) => d.id === id && i !== editingDepartmentIndex)) {
-        idEr.textContent = "ID already exists.";
-        departmentId.focus();
-        return;
+        localStorage.setItem('departments', JSON.stringify(departments));
+        updateDepartmentSelect();
+        updateDepartmentsTable();
+        depModal.classList.add('hidden');
+      });
+
+      tchBtn.addEventListener('click', () => {
+        if (!departments.length) {
+          noDepartment.classList.remove('hidden');
+          return;
+        }
+        noDepartment.classList.add('hidden');
+        resetTeacherForm();
+        editingTeacherIndex = null;
+        tchForm.querySelector('.teacher-id').value = `Teacher${teacherCounter}`;
+        modalTitles[1].textContent = "Add Teacher";
+        tchModal.classList.remove('hidden');
+        tchForm.querySelector('.teacher-name').focus();
+      });
+
+      tchCloseBtn.addEventListener('click', () => tchModal.classList.add('hidden'));
+
+      tchForm.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const id = tchForm.querySelector('.teacher-id').value;
+        const name = tchForm.querySelector('.teacher-name').value.trim();
+        const address = tchForm.querySelector('.teacher-address').value.trim();
+        const phone = tchForm.querySelector('.teacher-phone').value.trim();
+        const subject = tchForm.querySelector('.teacher-subject').value.trim();
+        const deptId = departmentSelect.value;
+
+        errorTeacherName.textContent = '';
+        errorTeacherAddress.textContent = '';
+        errorTeacherPhone.textContent = '';
+        errorTeacherSubject.textContent = '';
+
+        let hasError = false;
+
+        if (!name) {
+          errorTeacherName.textContent = "Please enter teacher name.";
+          hasError = true;
+        }
+        if (!address) {
+          errorTeacherAddress.textContent = "Please enter address.";
+          hasError = true;
+        }
+        if (!phone) {
+          errorTeacherPhone.textContent = "Please enter phone.";
+          hasError = true;
+        }
+        if (!subject) {
+          errorTeacherSubject.textContent = "Please enter subject.";
+          hasError = true;
+        }
+
+        if (hasError) return;
+
+        const dept = departments.find(d => d.id === deptId);
+
+        if (editingTeacherIndex !== null) {
+          teachers[editingTeacherIndex] = { id, name, address, phone, subject, department: dept };
+        } else {
+          teachers.push({ id, name, address, phone, subject, department: dept });
+          teacherCounter++;
+        }
+
+        localStorage.setItem('teachers', JSON.stringify(teachers));
+        updateTeachersTable();
+        tchModal.classList.add('hidden');
+      });
+
+      let sum = 0;
+
+      function updateDepartmentSelect() {
+        departmentSelect.innerHTML = '';
+        departments.forEach(dep => {
+          const option = document.createElement('option');
+          option.value = dep.id;
+          option.textContent = dep.name;
+          departmentSelect.appendChild(option);
+        });
       }
-      departments[editingDepartmentIndex] = { id, name };
-    } else {
-      if (departments.some(dep => dep.id === id)) {
-        idEr.textContent = "ID already exists.";
-        departmentId.focus();
-        return;
+
+      function updateDepartmentsTable() {
+        departmentsTableBody.innerHTML = '';
+        departments.forEach((dep, i) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="py-2 px-4 border">${dep.id}</td>
+            <td class="py-2 px-4 border">${dep.name}</td>
+            <td class="py-2 px-4 border">
+              <button class="edit-btn bg-purple-700 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition">Edit</button>
+              <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+            </td>`;
+          row.querySelector('.edit-btn').addEventListener('click', () => editDepartment(i));
+          row.querySelector('.delete-btn').addEventListener('click', () => deleteDepartment(i));
+          departmentsTableBody.appendChild(row);
+        });
       }
-      departments.push({ id, name });
+
+      function updateTeachersTable() {
+        teachersTableBody.innerHTML = '';
+        teachers.forEach((tch, i) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td class="py-2 px-4 border">${tch.id}</td>
+            <td class="py-2 px-4 border">${tch.name}</td>
+            <td class="py-2 px-4 border">${tch.address}</td>
+            <td class="py-2 px-4 border">${tch.phone}</td>
+            <td class="py-2 px-4 border">${tch.subject}</td>
+            <td class="py-2 px-4 border">${tch.department.name}</td>
+            <td class="py-2 px-4 border">
+              <button class="edit-btn bg-purple-700 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition">Edit</button>
+              <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
+            </td>`;
+          row.querySelector('.edit-btn').addEventListener('click', () => editTeacher(i));
+          row.querySelector('.delete-btn').addEventListener('click', () => deleteTeacher(i));
+          teachersTableBody.appendChild(row);
+        });
+      }
+
+      function resetDepartmentForm() {
+        departmentName.value = '';
+        departmentId.value = '';
+        depForm.querySelector('.error_Name').textContent = '';
+        depForm.querySelector('.error_Id').textContent = '';
+      }
+
+      function resetTeacherForm() {
+        tchForm.reset();
+        errorTeacherName.textContent = '';
+        errorTeacherAddress.textContent = '';
+        errorTeacherPhone.textContent = '';
+        errorTeacherSubject.textContent = '';
+      }
+
+      function editDepartment(index) {
+        resetDepartmentForm();
+        editingDepartmentIndex = index;
+        modalTitles[0].textContent = "Edit Department";
+        departmentName.value = departments[index].name;
+        departmentId.value = departments[index].id;
+        depModal.classList.remove('hidden');
+      }
+
+    function deleteDepartment(index) {
+      const depId = departments[index].id.toString(); 
+      teachers = teachers.filter(t => t.department && t.department.id.toString() !== depId);
+
+      localStorage.setItem('teachers', JSON.stringify(teachers));
+
+      departments.splice(index, 1);
+      localStorage.setItem('departments', JSON.stringify(departments));
+
+      updateDepartmentSelect();
+      updateDepartmentsTable();
+      updateTeachersTable();
     }
 
-    localStorage.setItem('departments', JSON.stringify(departments));
-    updateDepartmentSelect();
-    updateDepartmentsTable();
-    depModal.classList.add('hidden');
-  });
 
-  // --- Teacher Handlers ---
-  tchBtn.addEventListener('click', () => {
-    if (!departments.length) {
-      noDepartment.classList.remove('hidden');
-      return;
-    }
-    noDepartment.classList.add('hidden');
-    resetTeacherForm();
-    editingTeacherIndex = null;
-    tchForm.querySelector('.teacher-id').value = `Teacher${teacherCounter}`;
-    modalTitles[1].textContent = "Add Teacher";
-    tchModal.classList.remove('hidden');
-    tchForm.querySelector('.teacher-name').focus();
-  });
+      function editTeacher(index) {
+        editingTeacherIndex = index;
+        modalTitles[1].textContent = "Edit Teacher";
+        const t = teachers[index];
+        tchForm.querySelector('.teacher-id').value = t.id;
+        tchForm.querySelector('.teacher-name').value = t.name;
+        tchForm.querySelector('.teacher-address').value = t.address;
+        tchForm.querySelector('.teacher-phone').value = t.phone;
+        tchForm.querySelector('.teacher-subject').value = t.subject;
+        departmentSelect.value = t.department.id;
+        tchModal.classList.remove('hidden');
+      }
 
-  tchCloseBtn.addEventListener('click', () => tchModal.classList.add('hidden'));
-
-  tchForm.addEventListener('submit', e => {
-    e.preventDefault();
-
-    const id = tchForm.querySelector('.teacher-id').value;
-    const name = tchForm.querySelector('.teacher-name').value.trim();
-    const address = tchForm.querySelector('.teacher-address').value.trim();
-    const phone = tchForm.querySelector('.teacher-phone').value.trim();
-    const subject = tchForm.querySelector('.teacher-subject').value.trim();
-    const deptId = departmentSelect.value;
-
-    errorTeacherName.textContent = '';
-    errorTeacherAddress.textContent = '';
-    errorTeacherPhone.textContent = '';
-    errorTeacherSubject.textContent = '';
-
-    let hasError = false;
-
-    if (!name) {
-      errorTeacherName.textContent = "Please enter teacher name.";
-      hasError = true;
-    }
-    if (!address) {
-      errorTeacherAddress.textContent = "Please enter address.";
-      hasError = true;
-    }
-    if (!phone) {
-      errorTeacherPhone.textContent = "Please enter phone.";
-      hasError = true;
-    }
-    if (!subject) {
-      errorTeacherSubject.textContent = "Please enter subject.";
-      hasError = true;
-    }
-
-    if (hasError) return;
-
-    const dept = departments.find(d => d.id === deptId);
-
-    if (editingTeacherIndex !== null) {
-      teachers[editingTeacherIndex] = { id, name, address, phone, subject, department: dept };
-    } else {
-      teachers.push({ id, name, address, phone, subject, department: dept });
-      teacherCounter++;
-    }
-
-    localStorage.setItem('teachers', JSON.stringify(teachers));
-    updateTeachersTable();
-    tchModal.classList.add('hidden');
-  });
-
-  // --- Update UI ---
-  function updateDepartmentSelect() {
-    departmentSelect.innerHTML = '';
-    departments.forEach(dep => {
-      const option = document.createElement('option');
-      option.value = dep.id;
-      option.textContent = dep.name;
-      departmentSelect.appendChild(option);
-    });
-  }
-
-  function updateDepartmentsTable() {
-    departmentsTableBody.innerHTML = '';
-    departments.forEach((dep, i) => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td class="py-2 px-4 border">${dep.id}</td>
-        <td class="py-2 px-4 border">${dep.name}</td>
-        <td class="py-2 px-4 border">
-          <button class="edit-btn bg-purple-700 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition">Edit</button>
-          <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-        </td>`;
-      row.querySelector('.edit-btn').addEventListener('click', () => editDepartment(i));
-      row.querySelector('.delete-btn').addEventListener('click', () => deleteDepartment(i));
-      departmentsTableBody.appendChild(row);
-    });
-  }
-
-  function updateTeachersTable() {
-    teachersTableBody.innerHTML = '';
-    teachers.forEach((tch, i) => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td class="py-2 px-4 border">${tch.id}</td>
-        <td class="py-2 px-4 border">${tch.name}</td>
-        <td class="py-2 px-4 border">${tch.address}</td>
-        <td class="py-2 px-4 border">${tch.phone}</td>
-        <td class="py-2 px-4 border">${tch.subject}</td>
-        <td class="py-2 px-4 border">${tch.department.name}</td>
-        <td class="py-2 px-4 border">
-          <button class="edit-btn bg-purple-700 text-white px-3 py-1 rounded mr-2 hover:bg-blue-600 transition">Edit</button>
-          <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded">Delete</button>
-        </td>`;
-      row.querySelector('.edit-btn').addEventListener('click', () => editTeacher(i));
-      row.querySelector('.delete-btn').addEventListener('click', () => deleteTeacher(i));
-      teachersTableBody.appendChild(row);
-    });
-  }
-
-  // --- Form reset ---
-  function resetDepartmentForm() {
-    departmentName.value = '';
-    departmentId.value = '';
-    depForm.querySelector('.error_Name').textContent = '';
-    depForm.querySelector('.error_Id').textContent = '';
-  }
-
-  function resetTeacherForm() {
-    tchForm.reset();
-    errorTeacherName.textContent = '';
-    errorTeacherAddress.textContent = '';
-    errorTeacherPhone.textContent = '';
-    errorTeacherSubject.textContent = '';
-  }
-
-  // --- Edit/Delete ---
-  function editDepartment(index) {
-    editingDepartmentIndex = index;
-    modalTitles[0].textContent = "Edit Department";
-    departmentName.value = departments[index].name;
-    departmentId.value = departments[index].id;
-    depModal.classList.remove('hidden');
-  }
-
- function deleteDepartment(index) {
-  const depId = departments[index].id.toString(); // ensure string
-  // Filter out teachers that do NOT belong to this department
-  teachers = teachers.filter(t => t.department && t.department.id.toString() !== depId);
-
-  // Save updated teachers list
-  localStorage.setItem('teachers', JSON.stringify(teachers));
-
-  // Remove the department
-  departments.splice(index, 1);
-  localStorage.setItem('departments', JSON.stringify(departments));
-
-  // Refresh
-  updateDepartmentSelect();
-  updateDepartmentsTable();
-  updateTeachersTable();
-}
-
-
-  function editTeacher(index) {
-    editingTeacherIndex = index;
-    modalTitles[1].textContent = "Edit Teacher";
-    const t = teachers[index];
-    tchForm.querySelector('.teacher-id').value = t.id;
-    tchForm.querySelector('.teacher-name').value = t.name;
-    tchForm.querySelector('.teacher-address').value = t.address;
-    tchForm.querySelector('.teacher-phone').value = t.phone;
-    tchForm.querySelector('.teacher-subject').value = t.subject;
-    departmentSelect.value = t.department.id;
-    tchModal.classList.remove('hidden');
-  }
-
-  function deleteTeacher(index) {
-    teachers.splice(index, 1);
-    localStorage.setItem('teachers', JSON.stringify(teachers));
-    updateTeachersTable();
-  }
+      function deleteTeacher(index) {
+        teachers.splice(index, 1);
+        localStorage.setItem('teachers', JSON.stringify(teachers));
+        updateTeachersTable();
+      }
 </script>
 
 </body>
