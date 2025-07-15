@@ -1,6 +1,7 @@
 import {rum} from "./apps/app";
-import { AlertService } from "./apps/alert.service";
-import { ComponentService } from "./apps/component.server"; 
+import "./main.css";
+import { AlertService } from "./apps/alert.service.js";
+import { ComponentService } from "./apps/component.server.js"; 
 const alertService = new AlertService();
 const componentService = new ComponentService();
 run(alertService,componentService);
