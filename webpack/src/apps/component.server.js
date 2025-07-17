@@ -1,21 +1,20 @@
-
 export class ComponentService {
   constructor() {
-    this.numberOneInput = document.getElementById("numberOne");
-    this.numberTwoInput = document.getElementById("numberTwo");
-    this.addValuesButton = document.getElementById("addValues");
-    this.resultDiv = document.getElementById("result");
+    this.inputA = document.getElementById('numA');
+    this.inputB = document.getElementById('numB');
+    this.button = document.getElementById('addBtn');
+    this.resultBox = document.getElementById('result');
   }
 
   getInputs() {
-    return [this.numberOneInput.value, this.numberTwoInput.value];
+    return [this.inputA.value, this.inputB.value];
   }
 
-  setResult(str) {
-    this.resultDiv.innerText = str;
+  setResult(value) {
+    this.resultBox.innerText = value;
   }
 
   onClick(cb) {
-    this.addValuesButton.addEventListener("click", cb);
+    this.button.addEventListener('click', cb);
   }
 }

@@ -1,22 +1,21 @@
+import { inputsAreValid } from "./utils/input-are-valid.js";
+import { parseInputs } from "./utils/parse_input.js";
 
-import { inputsAreValid } from "./utils/input-are-valid";
-import { parseInputs } from "./utils/parse_input"; 
-const alertService = new AlertService();
-const componentService = new ComponentService();
-export const run = (alertService, componentService) => {
-  alertService.hideErrors();
+export const run = (alertServiceInstance, componentServiceInstance) => {
+  alertServiceInstance.hideErrors();
 
-  componentService.onClick(() => {
-    alertService.hideErrors();
-    const inputs = componentService.getInputs();
+  componentServiceInstance.onClick(() => {
+    alertServiceInstance.hideErrors();
+
+    const inputs = componentServiceInstance.getInputs();
     const parsedInputs = parseInputs(...inputs);
+
     if (inputsAreValid(...parsedInputs)) {
       const [numA, numB] = parsedInputs;
-      componentService.setResult(numA + numB);
+      componentServiceInstance.setResult(numA + numB);
     } else {
-      componentService.setResult("");
-      alertService.handleAdditionError(inputs, parsedInputs);
+      componentServiceInstance.setResult("");
+      alertServiceInstance.handleAdditionError(inputs, parsedInputs);
     }
   });
 };
-run(alertService, componentService);

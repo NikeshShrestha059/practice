@@ -1,5 +1,5 @@
-import {rum} from "./apps/app";
-import "./main.css";
+import {run} from "./apps/app";
+import './main.css'; 
 import { AlertService } from "./apps/alert.service.js";
 import { ComponentService } from "./apps/component.server.js"; 
 const alertService = new AlertService();

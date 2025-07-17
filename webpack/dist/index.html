@@ -2,9 +2,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Webpack Test</title>
+  <title>Addition App</title>
 </head>
 <body>
-  <script src="bundle.js"></script>
+  <div>
+    <input type="text" id="numA" placeholder="Number A">
+    <input type="text" id="numB" placeholder="Number B">
+    <button id="addBtn">Add</button>
+    <div id="result"></div>
+    <div id="error" style="color: red;"></div>
+  </div>
+
+  <script src="../dist/bundle.js"></script>
 </body>
 </html>
