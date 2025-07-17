@@ -11,9 +11,12 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "bootstrap": "^5.3.7",
     "css-loader": "^7.1.2",
+    "sass": "^1.89.2",
+    "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
-    "webpack": "^5.100.1",
+    "webpack": "^5.100.2",
     "webpack-cli": "^4.10.0"
   }
 }
