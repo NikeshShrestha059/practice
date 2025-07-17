@@ -1,26 +1,31 @@
 export class ComponentService {
-  constructor() {
-    this.inputA = document.getElementById('numA');
-    this.inputB = document.getElementById('numB');
-    this.button = document.getElementById('addBtn');
-    this.resultBox = document.getElementById('result');
+  constructor({ inputAId = 'numA', inputBId = 'numB', buttonId = 'addBtn', resultBoxId = 'result' } = {}) {
+    this.inputA = document.getElementById(inputAId);
+    this.inputB = document.getElementById(inputBId);
+    this.button = document.getElementById(buttonId);
+    this.resultBox = document.getElementById(resultBoxId);
 
-    // Warn if any elements are missing
-    if (!this.inputA) console.warn("Element with ID 'numA' not found.");
-    if (!this.inputB) console.warn("Element with ID 'numB' not found.");
-    if (!this.button) console.warn("Element with ID 'addBtn' not found.");
-    if (!this.resultBox) console.warn("Element with ID 'result' not found.");
+    this._warnIfMissing(this.inputA, inputAId);
+    this._warnIfMissing(this.inputB, inputBId);
+    this._warnIfMissing(this.button, buttonId);
+    this._warnIfMissing(this.resultBox, resultBoxId);
+  }
+
+  _warnIfMissing(element, id) {
+    if (!element) {
+      console.warn(`Element with ID '${id}' not found.`);
+    }
   }
 
   getInputs() {
-    const a = this.inputA?.value ?? '';
-    const b = this.inputB?.value ?? '';
+    const a = this.inputA?.value?.trim() ?? '';
+    const b = this.inputB?.value?.trim() ?? '';
     return [a, b];
   }
 
   setResult(value) {
     if (this.resultBox) {
-      this.resultBox.innerText = value;
+      this.resultBox.textContent = value;
     } else {
       console.warn("Cannot set result: resultBox is missing.");
     }
@@ -34,4 +39,3 @@ export class ComponentService {
     }
   }
 }
-
